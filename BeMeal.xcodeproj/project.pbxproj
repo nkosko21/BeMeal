@@ -21,6 +21,7 @@
 		DE52E3C62A43BF5E004E6F2F /* DailyProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52E3C22A43BF5E004E6F2F /* DailyProgressManager.swift */; };
 		DE52E3C72A43BF5E004E6F2F /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52E3C32A43BF5E004E6F2F /* ProfileScreenViewController.swift */; };
 		DE52E3C82A43BF5E004E6F2F /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52E3C52A43BF5E004E6F2F /* ProfileScreenView.swift */; };
+		DEB41B482A43C32400FE04D0 /* DailyProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB41B472A43C32400FE04D0 /* DailyProgressView.swift */; };
 		DEBEF4642A420B1900AF5C46 /* Macros.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBEF4632A420B1900AF5C46 /* Macros.swift */; };
 		DEBEF4662A42375B00AF5C46 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBEF4652A42375B00AF5C46 /* Configs.swift */; };
 		DEBEF4682A423AEE00AF5C46 /* PostTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBEF4672A423AEE00AF5C46 /* PostTableViewManager.swift */; };
@@ -44,6 +45,7 @@
 		DE52E3C22A43BF5E004E6F2F /* DailyProgressManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyProgressManager.swift; sourceTree = "<group>"; };
 		DE52E3C32A43BF5E004E6F2F /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
 		DE52E3C52A43BF5E004E6F2F /* ProfileScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
+		DEB41B472A43C32400FE04D0 /* DailyProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyProgressView.swift; sourceTree = "<group>"; };
 		DEBEF4632A420B1900AF5C46 /* Macros.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Macros.swift; sourceTree = "<group>"; };
 		DEBEF4652A42375B00AF5C46 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
 		DEBEF4672A423AEE00AF5C46 /* PostTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewManager.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 		DE52E3C42A43BF5E004E6F2F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DEB41B472A43C32400FE04D0 /* DailyProgressView.swift */,
 				DE52E3C52A43BF5E004E6F2F /* ProfileScreenView.swift */,
 			);
 			path = Views;
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEBEF46A2A435C3800AF5C46 /* ImagePickerManager.swift in Sources */,
+				DEB41B482A43C32400FE04D0 /* DailyProgressView.swift in Sources */,
 				01117AC52A33EEF50081D090 /* ViewController.swift in Sources */,
 				DECEDDB42A3E0E9F00B99A82 /* SocialFeedView.swift in Sources */,
 				DECEDDB62A3E0EB900B99A82 /* SocialFeedViewController.swift in Sources */,

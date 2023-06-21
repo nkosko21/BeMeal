@@ -11,7 +11,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "Main"
+        navigationController?.pushViewController(profileScreenViewController(), animated: true)
     }
 
 
