@@ -57,13 +57,16 @@ class SocialFeedViewController: UIViewController {
             image: UIImage(systemName: "person.fill"),
             style: .plain,
             target: self,
-            action: nil
+            action: #selector(onButtonNavigate)
         )
         
         navigationItem.rightBarButtonItem = barIcon
-        
+
         let titleLabel = UILabel()
     }
 
-
+    @objc func onButtonNavigate() {
+        let profileScreen = profileScreenViewController()
+        navigationController?.pushViewController(profileScreen, animated: true)
+    }
 }
