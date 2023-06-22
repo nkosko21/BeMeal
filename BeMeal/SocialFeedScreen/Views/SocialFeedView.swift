@@ -9,6 +9,7 @@ import UIKit
 
 class SocialFeedView: UIView {
 
+    var labelDateTime: UILabel!
     var tableViewPost: UITableView!
     var floatingButtonNewPost: UIButton!
     
@@ -16,11 +17,21 @@ class SocialFeedView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .black
         
+        setupDateTime()
         setupTableViewPost()
         setupFloatingButtonNewPost()
         
         initConstraints()
     }
+    
+    func setupDateTime() {
+        labelDateTime = UILabel()
+        labelDateTime.font = .systemFont(ofSize: 15)
+        labelDateTime.textColor = .white
+        labelDateTime.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(labelDateTime)
+    }
+    
     
     func setupTableViewPost() {
         tableViewPost = UITableView()
@@ -48,7 +59,10 @@ class SocialFeedView: UIView {
     
     func initConstraints() {
         NSLayoutConstraint.activate([
-            tableViewPost.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8),
+            labelDateTime.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 3),
+            labelDateTime.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            
+            tableViewPost.topAnchor.constraint(equalTo: labelDateTime.bottomAnchor, constant: 8),
             tableViewPost.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8),
             tableViewPost.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 4),
             tableViewPost.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -4),
