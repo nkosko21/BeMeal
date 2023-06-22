@@ -11,14 +11,11 @@ import PhotosUI
 class SocialFeedViewController: UIViewController {
     let socialFeedScreen = SocialFeedView()
     var selectedImage = UIImage()
-    var labelDate: UILabel!
-    var timer: Timer?
+    var labelTitle: UILabel!
+    var timer: Timer!
     var posts = [Post]()
     
-    override func loadView() {
-        view = socialFeedScreen
-        posts.append(Post(image: UIImage(systemName: "camera.fill")!, user: "Example User", macros: Macros(protein: 130, carbs: 100, fats: 50), caption: "Tester 1 2 3", mealType: "Breakfast", date: "XX/XX/XXXX"))
-    }
+    
     
     //MARK: Pick Photo using Gallery...
     func pickPhotoFromGallery(){
@@ -33,14 +30,23 @@ class SocialFeedViewController: UIViewController {
         present(photoPicker, animated: true, completion: nil)
     }
     
+    override func loadView() {
+        view = socialFeedScreen
+        posts.append(Post(image: UIImage(systemName: "camera.fill")!, user: "Example User", macros: Macros(protein: 130, carbs: 100, fats: 50), caption: "Tester 1 2 3", mealType: "Breakfast", date: "XX/XX/XXXX"))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "BeMeal."
-        navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: UIColor.white,
-            .font: UIFont.boldSystemFont(ofSize: 20)
-        ]
+                
         
         setupNavigationBar()
         
@@ -50,6 +56,8 @@ class SocialFeedViewController: UIViewController {
         
         socialFeedScreen.tableViewPost.delegate = self
         socialFeedScreen.tableViewPost.dataSource = self
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
     }
 
     func setupNavigationBar() {
@@ -60,13 +68,37 @@ class SocialFeedViewController: UIViewController {
             action: #selector(onButtonNavigate)
         )
         
-        navigationItem.rightBarButtonItem = barIcon
+        let barText = UIBarButtonItem(
+            title: "Profile:",
+            style: .plain,
+            target: self,
+            action: #selector(onButtonNavigate)
+        )
+        
+        navigationItem.rightBarButtonItems = [barIcon, barText]
 
-        let titleLabel = UILabel()
+        let containerTitle = UIView()
+        
+        
+        labelTitle = UILabel()
+        labelTitle.font = .systemFont(ofSize: 30)
+        labelTitle.textColor = .white
+        labelTitle.text = "BeMeal."
+        labelTitle.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
+        navigationItem.titleView = labelTitle
     }
 
     @objc func onButtonNavigate() {
         let profileScreen = profileScreenViewController()
         navigationController?.pushViewController(profileScreen, animated: true)
+    }
+    
+    @objc func tick() {
+        socialFeedScreen.labelDateTime.text = DateFormatter.localizedString(from: Date(),
+                                                              dateStyle: .medium,
+                                                              timeStyle: .medium)
     }
 }
