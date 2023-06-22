@@ -29,7 +29,7 @@ class profileScreenView: UIView {
     
     func setupButton() {
         profilePicButton = UIButton(type: .system)
-//        profilePicButton.setImage(<#T##image: UIImage?##UIImage?#>, for: <#T##UIControl.State#>)
+        profilePicButton.setImage(UIImage(systemName: "person"), for: .normal)
         profilePicButton.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(profilePicButton)
     }

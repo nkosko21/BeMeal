@@ -66,13 +66,13 @@ class dailyProgressView: UIView {
         wrapperView.addSubview(caloriesLabel)
         
         currentCaloriesLabel = UILabel()
-        currentCaloriesLabel.font = currentCaloriesLabel.font.withSize(20)
+        currentCaloriesLabel.font = currentCaloriesLabel.font.withSize(12)
         currentCaloriesLabel.text = "Current Calories: 0"
         currentCaloriesLabel.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.addSubview(currentCaloriesLabel)
         
         goalCaloriesLabel = UILabel()
-        goalCaloriesLabel.font = goalCaloriesLabel.font.withSize(20)
+        goalCaloriesLabel.font = goalCaloriesLabel.font.withSize(12)
         goalCaloriesLabel.text = "Goal Calories: 2000"
         goalCaloriesLabel.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.addSubview(goalCaloriesLabel)
@@ -84,13 +84,13 @@ class dailyProgressView: UIView {
         wrapperView.addSubview(proteinLabel)
         
         currentProteinLabel = UILabel()
-        currentProteinLabel.font = currentProteinLabel.font.withSize(20)
+        currentProteinLabel.font = currentProteinLabel.font.withSize(12)
         currentProteinLabel.text = "Current Protein: 0g"
         currentProteinLabel.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.addSubview(currentProteinLabel)
         
         goalProteinLabel = UILabel()
-        goalProteinLabel.font = goalProteinLabel.font.withSize(20)
+        goalProteinLabel.font = goalProteinLabel.font.withSize(12)
         goalProteinLabel.text = "Goal Protein: 100g"
         goalProteinLabel.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.addSubview(goalProteinLabel)
@@ -108,28 +108,28 @@ class dailyProgressView: UIView {
             dailyProgressLabel.topAnchor.constraint(equalTo: wrapperView.topAnchor),
             
             caloriesLabel.topAnchor.constraint(equalTo: dailyProgressLabel.bottomAnchor),
-            caloriesLabel.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
+            caloriesLabel.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
             
-            caloriesImage.topAnchor.constraint(equalTo: caloriesLabel.bottomAnchor),
-            caloriesImage.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
+            caloriesImage.topAnchor.constraint(equalTo: dailyProgressLabel.bottomAnchor),
+            caloriesImage.leadingAnchor.constraint(equalTo: caloriesLabel.trailingAnchor),
             
-            currentCaloriesLabel.topAnchor.constraint(equalTo: caloriesLabel.bottomAnchor),
-            currentCaloriesLabel.trailingAnchor.constraint(equalTo: caloriesImage.leadingAnchor),
+            currentCaloriesLabel.topAnchor.constraint(equalTo: caloriesImage.bottomAnchor),
+            currentCaloriesLabel.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
             
             goalCaloriesLabel.topAnchor.constraint(equalTo: currentCaloriesLabel.bottomAnchor),
-            goalCaloriesLabel.trailingAnchor.constraint(equalTo: caloriesImage.leadingAnchor),
+            goalCaloriesLabel.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
             
-            proteinLabel.topAnchor.constraint(equalTo: caloriesImage.bottomAnchor),
-            proteinLabel.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
+            proteinLabel.topAnchor.constraint(equalTo: goalCaloriesLabel.bottomAnchor, constant: 20),
+            proteinLabel.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
             
-            proteinImage.topAnchor.constraint(equalTo: proteinLabel.bottomAnchor),
-            proteinImage.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor),
+            proteinImage.topAnchor.constraint(equalTo: goalCaloriesLabel.bottomAnchor, constant: 20),
+            proteinImage.leadingAnchor.constraint(equalTo: proteinLabel.trailingAnchor),
             
             currentProteinLabel.topAnchor.constraint(equalTo: proteinLabel.bottomAnchor),
-            currentProteinLabel.trailingAnchor.constraint(equalTo: proteinImage.leadingAnchor),
+            currentProteinLabel.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
             
             goalProteinLabel.topAnchor.constraint(equalTo: currentProteinLabel.bottomAnchor),
-            goalProteinLabel.trailingAnchor.constraint(equalTo: proteinImage.leadingAnchor),
+            goalProteinLabel.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor),
         ])
     }
     
