@@ -12,14 +12,14 @@ extension SocialFeedViewController{
     func setupRightBarButton(isLoggedin: Bool){
         if isLoggedin{
             let barIcon = UIBarButtonItem(
-                image: UIImage(systemName: "person.fill"),
+                image: UIImage(systemName: "person.badge.plus"),
                 style: .plain,
                 target: self,
-                action: #selector(onButtonNavigate)
+                action: #selector(addFriendScreen)
             )
             
             let barText = UIBarButtonItem(
-                title: "Profile:",
+                title: "Profile",
                 style: .plain,
                 target: self,
                 action: #selector(onButtonNavigate)
@@ -61,6 +61,11 @@ extension SocialFeedViewController{
         }
     }
     
+    @objc func addFriendScreen() {
+            var addFriendScreen = addFriendViewController()
+            
+            navigationController?.pushViewController(addFriendScreen, animated: true)
+        }
     @objc func onSignInBarButtonTapped(){
         let signInAlert = UIAlertController(
             title: "Sign In / Register",
