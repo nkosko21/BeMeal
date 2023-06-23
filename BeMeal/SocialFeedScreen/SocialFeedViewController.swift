@@ -82,6 +82,12 @@ class SocialFeedViewController: UIViewController {
         socialFeedScreen.tableViewPost.delegate = self
         socialFeedScreen.tableViewPost.dataSource = self
         
+        myDateFormatter.dateStyle = .medium
+        myDateFormatter.timeStyle = .medium
+        let str = myDateFormatter.date(from: "June 23, 2023 at 03:33:00 PM")!
+        print(myDateFormatter.string(from: str))
+        
+        
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
     }
     
@@ -122,17 +128,43 @@ class SocialFeedViewController: UIViewController {
    
     
     @objc func tick() {
-        socialFeedScreen.labelDateTime.text = DateFormatter.localizedString(from: Date(),
-                                                              dateStyle: .medium,
-                                                              timeStyle: .medium)
+        socialFeedScreen.labelDateTime.text = myDateFormatter.string(from: Date())
     }
     
     @objc func onButtonDisplayBreakfast() {
         socialFeedScreen.buttonBreakfastFeed.tintColor = .white
         socialFeedScreen.buttonLunchFeed.tintColor = .none
         socialFeedScreen.buttonDinnerFeed.tintColor = .none
-        
+        print("Breakfast Time")
         self.database.collection("breakfastPost")
+            .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                if let documents = querySnapshot?.documents{
+                    self.posts.removeAll()
+                    for document in documents{
+                        do{
+                            print(document)
+                            let post  = try document.data(as: Post.self)
+                            
+                            self.posts.append(post)
+                        }catch{
+                            print(error)
+                        }
+                    }
+
+                    self.posts.sort(by: {
+                        self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
+                    
+                    self.socialFeedScreen.tableViewPost.reloadData()
+                }
+            })
+    }
+    
+    @objc func onButtonDisplayLunch() {
+        socialFeedScreen.buttonBreakfastFeed.tintColor = .none
+        socialFeedScreen.buttonLunchFeed.tintColor = .white
+        socialFeedScreen.buttonDinnerFeed.tintColor = .none
+        
+        self.database.collection("lunchPost")
             .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
                 if let documents = querySnapshot?.documents{
                     self.posts.removeAll()
@@ -152,16 +184,29 @@ class SocialFeedViewController: UIViewController {
             })
     }
     
-    @objc func onButtonDisplayLunch() {
-        socialFeedScreen.buttonBreakfastFeed.tintColor = .none
-        socialFeedScreen.buttonLunchFeed.tintColor = .white
-        socialFeedScreen.buttonDinnerFeed.tintColor = .none
-    }
-    
     @objc func onButtonDisplayDinner() {
         socialFeedScreen.buttonBreakfastFeed.tintColor = .none
         socialFeedScreen.buttonLunchFeed.tintColor = .none
         socialFeedScreen.buttonDinnerFeed.tintColor = .white
+        
+        self.database.collection("dinnerPost")
+            .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                if let documents = querySnapshot?.documents{
+                    self.posts.removeAll()
+                    for document in documents{
+                        do{
+                            print(document)
+                            let post  = try document.data(as: Post.self)
+                            self.posts.append(post)
+                        }catch{
+                            print(error)
+                        }
+                    }
+                    self.posts.sort(by: {
+                        self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
+                    self.socialFeedScreen.tableViewPost.reloadData()
+                }
+            })
     }
     
 }

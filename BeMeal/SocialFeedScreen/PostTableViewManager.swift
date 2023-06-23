@@ -19,7 +19,11 @@ extension SocialFeedViewController: UITableViewDelegate, UITableViewDataSource{
         cell.labelMeal.text = "\(posts[indexPath.row].mealType) at "
         cell.labelDate.text = posts[indexPath.row].date
         cell.textCaption.text = "\(posts[indexPath.row].caption)"
-        cell.imageFood.loadRemoteImage(from: URL(string: posts[indexPath.row].photoURL)!)
+        if let url = URL(string: posts[indexPath.row].photoURL) {
+            cell.imageFood.loadRemoteImage(from: url)
+        } else {
+            cell.imageFood.image = UIImage()
+        }
         let protein = posts[indexPath.row].macros[0]
         let carbs = posts[indexPath.row].macros[1]
         let fats = posts[indexPath.row].macros[2]
