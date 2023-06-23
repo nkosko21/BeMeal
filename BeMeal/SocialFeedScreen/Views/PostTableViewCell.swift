@@ -10,7 +10,7 @@ import UIKit
 class PostTableViewCell: UITableViewCell {
     var imageProfile: UIImageView!
     var wrapperCellView: UIView!
-    var labelUser: UILabel!
+    var labelUser: UITextView!
     var labelDate: UILabel!
     var labelMeal: UILabel!
     var textMacros: UITextView!
@@ -43,28 +43,28 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func setupLabelUser() {
-        labelUser = UILabel()
-        labelUser.text = "Example User"
+        labelUser = UITextView()
+        labelUser.backgroundColor = .black
+        labelUser.text = "..."
         labelUser.textColor = .white
-        labelUser.font = .boldSystemFont(ofSize: 24)
+        labelUser.isEditable = false
+        labelUser.font = .boldSystemFont(ofSize: 20)
         labelUser.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(labelUser)
     }
     
     func setupLabelDate() {
         labelDate = UILabel()
-        labelDate.text = "XX/XX/XXXX 00:00 AM"
         labelDate.textColor = .white
-        labelDate.font = .systemFont(ofSize: 18)
+        labelDate.font = .systemFont(ofSize: 15)
         labelDate.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(labelDate)
     }
     
     func setupLabelMeal() {
         labelMeal = UILabel()
-        labelMeal.text = "Breakfast at"
         labelMeal.textColor = .white
-        labelMeal.font = .systemFont(ofSize: 18)
+        labelMeal.font = .systemFont(ofSize: 15)
         labelMeal.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(labelMeal)
     }
@@ -75,7 +75,7 @@ class PostTableViewCell: UITableViewCell {
         textMacros.textColor = .white
         textMacros.backgroundColor = UIColor.black.withAlphaComponent(0.75)
 
-        textMacros.text = "Proteins: 0 g / Carbs: 0 g / Fats: 0 g"
+        textMacros.text = "Proteins: . g / Carbs: . g / Fats: . g"
         textMacros.font = .systemFont(ofSize: 15)
         textMacros.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(textMacros)
@@ -84,7 +84,6 @@ class PostTableViewCell: UITableViewCell {
     
     func setupImageFood() {
         imageFood = UIImageView()
-        imageFood.image = UIImage(systemName: "camera.fill")
         imageFood.sizeToFit()
         imageFood.contentMode = .scaleAspectFill
         imageFood.clipsToBounds = true
@@ -131,8 +130,10 @@ class PostTableViewCell: UITableViewCell {
             imageProfile.heightAnchor.constraint(equalToConstant: 30),
             imageProfile.widthAnchor.constraint(equalToConstant: 30),
             
-            labelUser.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 8),
+            labelUser.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 5),
             labelUser.leadingAnchor.constraint(equalTo: imageProfile.trailingAnchor, constant: 5),
+            labelUser.trailingAnchor.constraint(equalTo: wrapperCellView.trailingAnchor, constant: -5),
+            labelUser.heightAnchor.constraint(equalToConstant: 30),
             
             labelMeal.topAnchor.constraint(equalTo: labelUser.bottomAnchor, constant: 2),
             labelMeal.leadingAnchor.constraint(equalTo: labelUser.leadingAnchor),

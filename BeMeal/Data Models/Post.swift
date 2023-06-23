@@ -16,12 +16,15 @@ struct Post:Codable {
     var caption: String
     var mealType: String
     var date: String
+    var username: String
     
-    init(photoURL: String, userEmail: String, macros: [Int], caption: String, mealType: String, date: String) {
+    init(photoURL: String, userEmail: String, macros: [Int], caption: String, mealType: String, date: String, username: String) {
         self.photoURL = photoURL
         self.macros = macros
         self.caption = caption
         self.mealType = mealType
         self.date = date
+        self.username = username
+        
     }
 }

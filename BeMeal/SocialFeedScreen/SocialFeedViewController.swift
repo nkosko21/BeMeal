@@ -12,6 +12,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class SocialFeedViewController: UIViewController {
+    let myDateFormatter = DateFormatter()
     let socialFeedScreen = SocialFeedView()
     var selectedImage: UIImage?
     var handleAuth: AuthStateDidChangeListenerHandle?
@@ -74,6 +75,10 @@ class SocialFeedViewController: UIViewController {
         //MARK: Put the floating button above all the views...
         view.bringSubviewToFront(socialFeedScreen.floatingButtonNewPost)
         
+        socialFeedScreen.buttonBreakfastFeed.addTarget(self, action: #selector(onButtonDisplayBreakfast), for: .touchUpInside)
+        socialFeedScreen.buttonLunchFeed.addTarget(self, action: #selector(onButtonDisplayLunch), for: .touchUpInside)
+        socialFeedScreen.buttonDinnerFeed.addTarget(self, action: #selector(onButtonDisplayDinner), for: .touchUpInside)
+        
         socialFeedScreen.tableViewPost.delegate = self
         socialFeedScreen.tableViewPost.dataSource = self
         
@@ -121,4 +126,42 @@ class SocialFeedViewController: UIViewController {
                                                               dateStyle: .medium,
                                                               timeStyle: .medium)
     }
+    
+    @objc func onButtonDisplayBreakfast() {
+        socialFeedScreen.buttonBreakfastFeed.tintColor = .white
+        socialFeedScreen.buttonLunchFeed.tintColor = .none
+        socialFeedScreen.buttonDinnerFeed.tintColor = .none
+        
+        self.database.collection("breakfastPost")
+            .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                if let documents = querySnapshot?.documents{
+                    self.posts.removeAll()
+                    for document in documents{
+                        do{
+                            print(document)
+                            let post  = try document.data(as: Post.self)
+                            self.posts.append(post)
+                        }catch{
+                            print(error)
+                        }
+                    }
+                    self.posts.sort(by: {
+                        self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
+                    self.socialFeedScreen.tableViewPost.reloadData()
+                }
+            })
+    }
+    
+    @objc func onButtonDisplayLunch() {
+        socialFeedScreen.buttonBreakfastFeed.tintColor = .none
+        socialFeedScreen.buttonLunchFeed.tintColor = .white
+        socialFeedScreen.buttonDinnerFeed.tintColor = .none
+    }
+    
+    @objc func onButtonDisplayDinner() {
+        socialFeedScreen.buttonBreakfastFeed.tintColor = .none
+        socialFeedScreen.buttonLunchFeed.tintColor = .none
+        socialFeedScreen.buttonDinnerFeed.tintColor = .white
+    }
+    
 }
