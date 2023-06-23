@@ -7,8 +7,12 @@
 
 import Foundation
 import UIKit
+import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class addFriendViewController: UIViewController {
+    let database = Firestore.firestore()
     var searchedFriends = [User]()
     var addFriendScreen = addFriendView()
     
