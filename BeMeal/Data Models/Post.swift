@@ -9,18 +9,16 @@ import Foundation
 import UIKit
 import FirebaseFirestoreSwift
 
-struct Post {
+struct Post:Codable {
     @DocumentID var id: String?
-    var image: UIImage
-    var user: String
-    var macros: Macros
+    var photoURL: String
+    var macros: [Int]
     var caption: String
     var mealType: String
     var date: String
     
-    init(image: UIImage, user: String, macros: Macros, caption: String, mealType: String, date: String) {
-        self.image = image
-        self.user = user
+    init(photoURL: String, userEmail: String, macros: [Int], caption: String, mealType: String, date: String) {
+        self.photoURL = photoURL
         self.macros = macros
         self.caption = caption
         self.mealType = mealType

@@ -10,6 +10,10 @@ import UIKit
 class SocialFeedView: UIView {
 
     var labelDateTime: UILabel!
+    var labelWelcome: UILabel!
+    var buttonBreakfastFeed: UIButton!
+    var buttonLunchFeed: UIButton!
+    var buttonDinnerFeed: UIButton!
     var tableViewPost: UITableView!
     var floatingButtonNewPost: UIButton!
     
@@ -18,6 +22,8 @@ class SocialFeedView: UIView {
         self.backgroundColor = .black
         
         setupDateTime()
+        setupWelcome()
+        setupButtonFeeds()
         setupTableViewPost()
         setupFloatingButtonNewPost()
         
@@ -32,6 +38,34 @@ class SocialFeedView: UIView {
         self.addSubview(labelDateTime)
     }
     
+    func setupWelcome() {
+        labelWelcome = UILabel()
+        labelWelcome.font = .systemFont(ofSize: 18)
+        labelWelcome.text = "Please sign-in"
+        labelWelcome.textColor = .white
+        labelWelcome.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(labelWelcome)
+    }
+    
+    func setupButtonFeeds() {
+        buttonBreakfastFeed = UIButton(type: .system)
+        buttonBreakfastFeed.setTitle("Breakfast", for: .normal)
+        buttonBreakfastFeed.setImage(UIImage(systemName: "cup.and.saucer.fill"), for: .normal)
+        buttonBreakfastFeed.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(buttonBreakfastFeed)
+        
+        buttonLunchFeed = UIButton(type: .system)
+        buttonLunchFeed.setTitle("Lunch", for: .normal)
+        buttonLunchFeed.setImage(UIImage(systemName: "takeoutbag.and.cup.and.straw.fill"), for: .normal)
+        buttonLunchFeed.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(buttonLunchFeed)
+        
+        buttonDinnerFeed = UIButton(type: .system)
+        buttonDinnerFeed.setTitle("Dinner", for: .normal)
+        buttonDinnerFeed.setImage(UIImage(systemName: "wineglass.fill"), for: .normal)
+        buttonDinnerFeed.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(buttonDinnerFeed)
+    }
     
     func setupTableViewPost() {
         tableViewPost = UITableView()
@@ -62,7 +96,21 @@ class SocialFeedView: UIView {
             labelDateTime.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 3),
             labelDateTime.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
-            tableViewPost.topAnchor.constraint(equalTo: labelDateTime.bottomAnchor, constant: 8),
+            labelWelcome.topAnchor.constraint(equalTo: labelDateTime.bottomAnchor, constant: 3),
+            labelWelcome.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            
+            buttonBreakfastFeed.topAnchor.constraint(equalTo: labelWelcome.bottomAnchor, constant: 2),
+            buttonBreakfastFeed.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor,constant: 5),
+            
+            buttonLunchFeed.topAnchor.constraint(equalTo: labelWelcome.bottomAnchor, constant: 2),
+            buttonLunchFeed.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            
+            buttonDinnerFeed.topAnchor.constraint(equalTo: labelWelcome.bottomAnchor, constant: 2),
+            buttonDinnerFeed.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -5),
+            
+    
+            
+            tableViewPost.topAnchor.constraint(equalTo: buttonBreakfastFeed.bottomAnchor, constant: 8),
             tableViewPost.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8),
             tableViewPost.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 4),
             tableViewPost.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -4),

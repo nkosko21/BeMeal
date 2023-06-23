@@ -7,11 +7,16 @@
 
 import UIKit
 import PhotosUI
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestore
 
 class SocialFeedViewController: UIViewController {
     let socialFeedScreen = SocialFeedView()
-    var selectedImage = UIImage()
-    var labelTitle: UILabel!
+    var selectedImage: UIImage?
+    var handleAuth: AuthStateDidChangeListenerHandle?
+    var currentUser:FirebaseAuth.User?
+    let database = Firestore.firestore()
     var timer: Timer!
     var posts = [Post]()
     
@@ -32,24 +37,39 @@ class SocialFeedViewController: UIViewController {
     
     override func loadView() {
         view = socialFeedScreen
-        posts.append(Post(image: UIImage(systemName: "camera.fill")!, user: "Example User", macros: Macros(protein: 130, carbs: 100, fats: 50), caption: "Tester 1 2 3", mealType: "Breakfast", date: "XX/XX/XXXX"))
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-                
-        
         setupNavigationBar()
         
+        //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
+        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
+            if user == nil{
+                //MARK: not signed in...
+                self.currentUser = nil
+                self.socialFeedScreen.labelWelcome.text = "Please sign in/register!"
+                self.disableButtons()
+                
+                
+                //MARK: Reset tableView...
+                self.posts.removeAll()
+                self.socialFeedScreen.tableViewPost.reloadData()
+                
+                //MARK: Sign in bar button...
+                self.setupRightBarButton(isLoggedin: false)
+                
+            } else {
+                self.currentUser = user
+                self.socialFeedScreen.labelWelcome.text = "Welcome \(user?.displayName ?? "Anonymous")! Please select a meal feed"
+                self.enableButtons()
+                
+                //MARK: Logout bar button...
+                self.setupRightBarButton(isLoggedin: true)
+            }
+        }
                 
         //MARK: Put the floating button above all the views...
         view.bringSubviewToFront(socialFeedScreen.floatingButtonNewPost)
@@ -59,28 +79,31 @@ class SocialFeedViewController: UIViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
     }
+    
+    func enableButtons() {
+        self.socialFeedScreen.floatingButtonNewPost.isEnabled = true
+        self.socialFeedScreen.floatingButtonNewPost.isHidden = false
+        self.socialFeedScreen.buttonBreakfastFeed.isEnabled = true
+        self.socialFeedScreen.buttonBreakfastFeed.isHidden = false
+        self.socialFeedScreen.buttonLunchFeed.isEnabled = true
+        self.socialFeedScreen.buttonLunchFeed.isHidden = false
+        self.socialFeedScreen.buttonDinnerFeed.isEnabled = true
+        self.socialFeedScreen.buttonDinnerFeed.isHidden = false
+    }
+    
+    func disableButtons() {
+        self.socialFeedScreen.floatingButtonNewPost.isEnabled = false
+        self.socialFeedScreen.floatingButtonNewPost.isHidden = true
+        self.socialFeedScreen.buttonBreakfastFeed.isEnabled = false
+        self.socialFeedScreen.buttonBreakfastFeed.isHidden = true
+        self.socialFeedScreen.buttonLunchFeed.isEnabled = false
+        self.socialFeedScreen.buttonLunchFeed.isHidden = true
+        self.socialFeedScreen.buttonDinnerFeed.isEnabled = false
+        self.socialFeedScreen.buttonDinnerFeed.isHidden = true
+    }
 
     func setupNavigationBar() {
-        let barIcon = UIBarButtonItem(
-            image: UIImage(systemName: "person.fill"),
-            style: .plain,
-            target: self,
-            action: #selector(onButtonNavigate)
-        )
-        
-        let barText = UIBarButtonItem(
-            title: "Profile:",
-            style: .plain,
-            target: self,
-            action: #selector(onButtonNavigate)
-        )
-        
-        navigationItem.rightBarButtonItems = [barIcon, barText]
-
-        let containerTitle = UIView()
-        
-        
-        labelTitle = UILabel()
+        let labelTitle = UILabel()
         labelTitle.font = .systemFont(ofSize: 30)
         labelTitle.textColor = .white
         labelTitle.text = "BeMeal."
@@ -91,10 +114,7 @@ class SocialFeedViewController: UIViewController {
         navigationItem.titleView = labelTitle
     }
 
-    @objc func onButtonNavigate() {
-        let profileScreen = profileScreenViewController()
-        navigationController?.pushViewController(profileScreen, animated: true)
-    }
+   
     
     @objc func tick() {
         socialFeedScreen.labelDateTime.text = DateFormatter.localizedString(from: Date(),

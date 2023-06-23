@@ -12,7 +12,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Main"
-        navigationController?.pushViewController(SocialFeedViewController(), animated: true)
+        
+        navigationController?.setViewControllers([SocialFeedViewController()], animated: true)
     }
 
 
