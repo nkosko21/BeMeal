@@ -39,6 +39,7 @@
 		DED0DDD12A45EC4800C8010B /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0DDD02A45EC4800C8010B /* PhotoManager.swift */; };
 		DED0DDD32A45EDAF00C8010B /* RegisterFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0DDD22A45EDAF00C8010B /* RegisterFirebaseManager.swift */; };
 		DED0DDD52A45FC2800C8010B /* RightBarButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0DDD42A45FC2800C8010B /* RightBarButtonManager.swift */; };
+		DEDC15192A4728C6008AA257 /* ControllerViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDC15182A4728C6008AA257 /* ControllerViewUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		DED0DDD02A45EC4800C8010B /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		DED0DDD22A45EDAF00C8010B /* RegisterFirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterFirebaseManager.swift; sourceTree = "<group>"; };
 		DED0DDD42A45FC2800C8010B /* RightBarButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightBarButtonManager.swift; sourceTree = "<group>"; };
+		DEDC15182A4728C6008AA257 /* ControllerViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerViewUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			children = (
 				DEBEF4652A42375B00AF5C46 /* Configs.swift */,
 				DEB752422A462DBB0072803F /* ImageViewUtils.swift */,
+				DEDC15182A4728C6008AA257 /* ControllerViewUtils.swift */,
 				01117AC02A33EEF50081D090 /* AppDelegate.swift */,
 				01117AC22A33EEF50081D090 /* SceneDelegate.swift */,
 				01117AC42A33EEF50081D090 /* ViewController.swift */,
@@ -300,6 +303,7 @@
 				DE52E3C62A43BF5E004E6F2F /* DailyProgressManager.swift in Sources */,
 				DED0DDC62A45DD4400C8010B /* RegisterProgressIndicatorManager.swift in Sources */,
 				01117AC12A33EEF50081D090 /* AppDelegate.swift in Sources */,
+				DEDC15192A4728C6008AA257 /* ControllerViewUtils.swift in Sources */,
 				DED0DDBE2A44D91D00C8010B /* Users.swift in Sources */,
 				DED0DDCD2A45DD9F00C8010B /* ProgressSpinnerDelegate.swift in Sources */,
 				DED0DDCC2A45DD9F00C8010B /* ProgressSpinnerViewController.swift in Sources */,

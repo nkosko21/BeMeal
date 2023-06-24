@@ -28,14 +28,7 @@ class RegisterViewController: UIViewController {
         view = registerView
     }
     
-    //MARK: Displays Error Alert...
-    func showErrorAlert(_ message:String){
-            let alert = UIAlertController(title: "Error!", message: message, preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            
-            self.present(alert, animated: true)
-    }
+    
     
     //MARK: Validates Email Format...
     func isValidEmail(_ email: String) -> Bool {

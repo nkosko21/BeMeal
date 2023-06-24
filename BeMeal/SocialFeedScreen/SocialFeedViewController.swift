@@ -12,6 +12,7 @@ import FirebaseStorage
 import FirebaseFirestore
 
 class SocialFeedViewController: UIViewController {
+    let timeFormater = DateFormatter()
     let myDateFormatter = DateFormatter()
     let socialFeedScreen = SocialFeedView()
     var selectedImage: UIImage?
@@ -84,8 +85,9 @@ class SocialFeedViewController: UIViewController {
         
         myDateFormatter.dateStyle = .medium
         myDateFormatter.timeStyle = .medium
-        let str = myDateFormatter.date(from: "June 23, 2023 at 03:33:00 PM")!
-        print(myDateFormatter.string(from: str))
+        timeFormater.timeStyle = .short
+        timeFormater.dateStyle = .none
+
         
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
@@ -132,81 +134,123 @@ class SocialFeedViewController: UIViewController {
     }
     
     @objc func onButtonDisplayBreakfast() {
-        socialFeedScreen.buttonBreakfastFeed.tintColor = .white
-        socialFeedScreen.buttonLunchFeed.tintColor = .none
-        socialFeedScreen.buttonDinnerFeed.tintColor = .none
-        print("Breakfast Time")
-        self.database.collection("breakfastPost")
-            .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
-                if let documents = querySnapshot?.documents{
-                    self.posts.removeAll()
-                    for document in documents{
-                        do{
-                            print(document)
-                            let post  = try document.data(as: Post.self)
-                            
-                            self.posts.append(post)
-                        }catch{
-                            print(error)
-                        }
-                    }
-
-                    self.posts.sort(by: {
-                        self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
+        
+        
+        if let timeText = socialFeedScreen.labelDateTime.text {
+            print(timeFormater.string(from: myDateFormatter.date(from: timeText)!))
+            if let currentTime =  myDateFormatter.date(from: timeText) {
+                if currentTime < timeFormater.date(from: "4:00 AM")! {
+                    showErrorAlert("Not breakfast time yet. Please wait till 4:00 AM")
+                } else {
+                    //MARK: Change Button Colors to select Breakfast...
+                    socialFeedScreen.buttonBreakfastFeed.tintColor = .white
+                    socialFeedScreen.buttonLunchFeed.tintColor = .none
+                    socialFeedScreen.buttonDinnerFeed.tintColor = .none
                     
-                    self.socialFeedScreen.tableViewPost.reloadData()
+                    //MARK: Change Table to Breakfast Feed...
+                    self.database.collection("breakfastPost")
+                        .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                            if let documents = querySnapshot?.documents{
+                                self.posts.removeAll()
+                                for document in documents{
+                                    do{
+                                        print(document)
+                                        let post  = try document.data(as: Post.self)
+                                        
+                                        self.posts.append(post)
+                                    }catch{
+                                        print(error)
+                                    }
+                                }
+
+                                self.posts.sort(by: {
+                                    self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
+                                
+                                self.socialFeedScreen.tableViewPost.reloadData()
+                            }
+                    })
                 }
-            })
+            }
+        }
+        
+        
     }
     
     @objc func onButtonDisplayLunch() {
-        socialFeedScreen.buttonBreakfastFeed.tintColor = .none
-        socialFeedScreen.buttonLunchFeed.tintColor = .white
-        socialFeedScreen.buttonDinnerFeed.tintColor = .none
-        
-        self.database.collection("lunchPost")
-            .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
-                if let documents = querySnapshot?.documents{
-                    self.posts.removeAll()
-                    for document in documents{
-                        do{
-                            print(document)
-                            let post  = try document.data(as: Post.self)
-                            self.posts.append(post)
-                        }catch{
-                            print(error)
-                        }
-                    }
-                    self.posts.sort(by: {
-                        self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
-                    self.socialFeedScreen.tableViewPost.reloadData()
+        if let timeText = socialFeedScreen.labelDateTime.text {
+            print(timeFormater.string(from: myDateFormatter.date(from: timeText)!))
+            if let currentTime =  myDateFormatter.date(from: timeText) {
+                if currentTime > timeFormater.date(from: "12:00 PM")! {
+                    showErrorAlert("Not lunch time yet! Please wait till 12:00 PM")
+                } else {
+                    //MARK: Change Button Colors to select Lunch...
+                    socialFeedScreen.buttonBreakfastFeed.tintColor = .none
+                    socialFeedScreen.buttonLunchFeed.tintColor = .white
+                    socialFeedScreen.buttonDinnerFeed.tintColor = .none
+                    
+                    //MARK: Change Table to Lunch Feed...
+                    self.database.collection("lunchPost")
+                        .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                            if let documents = querySnapshot?.documents{
+                                self.posts.removeAll()
+                                for document in documents{
+                                    do{
+                                        print(document)
+                                        let post  = try document.data(as: Post.self)
+                                        self.posts.append(post)
+                                    }catch{
+                                        print(error)
+                                    }
+                                }
+                                self.posts.sort(by: {
+                                    self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
+                                self.socialFeedScreen.tableViewPost.reloadData()
+                            }
+                    })
                 }
-            })
+            }
+        }
+        
+        
     }
     
     @objc func onButtonDisplayDinner() {
-        socialFeedScreen.buttonBreakfastFeed.tintColor = .none
-        socialFeedScreen.buttonLunchFeed.tintColor = .none
-        socialFeedScreen.buttonDinnerFeed.tintColor = .white
-        
-        self.database.collection("dinnerPost")
-            .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
-                if let documents = querySnapshot?.documents{
-                    self.posts.removeAll()
-                    for document in documents{
-                        do{
-                            print(document)
-                            let post  = try document.data(as: Post.self)
-                            self.posts.append(post)
-                        }catch{
-                            print(error)
-                        }
-                    }
-                    self.posts.sort(by: {
-                        self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
-                    self.socialFeedScreen.tableViewPost.reloadData()
+        if let timeText = socialFeedScreen.labelDateTime.text {
+            if let currentTime =  myDateFormatter.date(from: timeText) {
+                print(currentTime.description)
+                if currentTime > timeFormater.date(from: "7:00 PM")! {
+                    showErrorAlert("Not dinner time yet. Please wait till 7:00PM")
+                } else {
+                    //MARK: Change Button Colors to select Dinner...
+                    socialFeedScreen.buttonBreakfastFeed.tintColor = .none
+                    socialFeedScreen.buttonLunchFeed.tintColor = .none
+                    socialFeedScreen.buttonDinnerFeed.tintColor = .white
+                    
+                    //MARK: Change Table to Dinner Feed...
+                    self.database.collection("dinnerPost")
+                        .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                            if let documents = querySnapshot?.documents{
+                                self.posts.removeAll()
+                                for document in documents{
+                                    do{
+                                        print(document)
+                                        let post  = try document.data(as: Post.self)
+                                        self.posts.append(post)
+                                    }catch{
+                                        print(error)
+                                    }
+                                }
+                                self.posts.sort(by: {
+                                    self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
+                                self.socialFeedScreen.tableViewPost.reloadData()
+                            }
+                    })
                 }
-            })
+            }
+        }
+        
+        
+        
     }
     
 }
