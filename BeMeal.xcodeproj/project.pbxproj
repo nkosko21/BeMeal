@@ -13,6 +13,10 @@
 		01117AC82A33EEF50081D090 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01117AC62A33EEF50081D090 /* Main.storyboard */; };
 		01117ACA2A33EEF60081D090 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01117AC92A33EEF60081D090 /* Assets.xcassets */; };
 		01117ACD2A33EEF60081D090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01117ACB2A33EEF60081D090 /* LaunchScreen.storyboard */; };
+		0114C1B92A4648F1001A558C /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114C1B82A4648F1001A558C /* AddFriendViewController.swift */; };
+		0114C1BB2A464911001A558C /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114C1BA2A464911001A558C /* AddFriendView.swift */; };
+		0114C1BE2A46493B001A558C /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114C1BD2A46493B001A558C /* FriendCell.swift */; };
+		0114C1C12A4649F2001A558C /* SearchBarButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114C1C02A4649F2001A558C /* SearchBarButtonManager.swift */; };
 		DE52E3B72A439F89004E6F2F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE52E3B62A439F89004E6F2F /* GoogleService-Info.plist */; };
 		DE52E3BA2A43A0BD004E6F2F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DE52E3B92A43A0BD004E6F2F /* FirebaseAuth */; };
 		DE52E3BC2A43A0BD004E6F2F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DE52E3BB2A43A0BD004E6F2F /* FirebaseFirestore */; };
@@ -51,6 +55,10 @@
 		01117AC92A33EEF60081D090 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		01117ACC2A33EEF60081D090 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		01117ACE2A33EEF60081D090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0114C1B82A4648F1001A558C /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
+		0114C1BA2A464911001A558C /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
+		0114C1BD2A46493B001A558C /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		0114C1C02A4649F2001A558C /* SearchBarButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButtonManager.swift; sourceTree = "<group>"; };
 		DE52E3B62A439F89004E6F2F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE52E3C22A43BF5E004E6F2F /* DailyProgressManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyProgressManager.swift; sourceTree = "<group>"; };
 		DE52E3C32A43BF5E004E6F2F /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
@@ -124,10 +132,30 @@
 				01117AC62A33EEF50081D090 /* Main.storyboard */,
 				01117AC92A33EEF60081D090 /* Assets.xcassets */,
 				01117ACB2A33EEF60081D090 /* LaunchScreen.storyboard */,
+				0114C1BC2A464916001A558C /* Add Friend Screen */,
 				01117ACE2A33EEF60081D090 /* Info.plist */,
 				DE52E3B62A439F89004E6F2F /* GoogleService-Info.plist */,
 			);
 			path = BeMeal;
+			sourceTree = "<group>";
+		};
+		0114C1BC2A464916001A558C /* Add Friend Screen */ = {
+			isa = PBXGroup;
+			children = (
+				0114C1B82A4648F1001A558C /* AddFriendViewController.swift */,
+				0114C1BF2A464940001A558C /* Views */,
+				0114C1C02A4649F2001A558C /* SearchBarButtonManager.swift */,
+			);
+			path = "Add Friend Screen";
+			sourceTree = "<group>";
+		};
+		0114C1BF2A464940001A558C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0114C1BA2A464911001A558C /* AddFriendView.swift */,
+				0114C1BD2A46493B001A558C /* FriendCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		DE245A992A3DF6F7003C9485 /* SocialFeedScreen */ = {
@@ -290,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEBEF46A2A435C3800AF5C46 /* ImagePickerManager.swift in Sources */,
+				0114C1C12A4649F2001A558C /* SearchBarButtonManager.swift in Sources */,
 				DEB41B482A43C32400FE04D0 /* DailyProgressView.swift in Sources */,
 				DED0DDD12A45EC4800C8010B /* PhotoManager.swift in Sources */,
 				DED0DDD32A45EDAF00C8010B /* RegisterFirebaseManager.swift in Sources */,
@@ -302,6 +331,7 @@
 				DED0DDD52A45FC2800C8010B /* RightBarButtonManager.swift in Sources */,
 				DE52E3C62A43BF5E004E6F2F /* DailyProgressManager.swift in Sources */,
 				DED0DDC62A45DD4400C8010B /* RegisterProgressIndicatorManager.swift in Sources */,
+				0114C1BE2A46493B001A558C /* FriendCell.swift in Sources */,
 				01117AC12A33EEF50081D090 /* AppDelegate.swift in Sources */,
 				DEDC15192A4728C6008AA257 /* ControllerViewUtils.swift in Sources */,
 				DED0DDBE2A44D91D00C8010B /* Users.swift in Sources */,
@@ -312,7 +342,9 @@
 				DECEDDBC2A3E13D000B99A82 /* Post.swift in Sources */,
 				DEBEF4682A423AEE00AF5C46 /* PostTableViewManager.swift in Sources */,
 				DEBEF4662A42375B00AF5C46 /* Configs.swift in Sources */,
+				0114C1B92A4648F1001A558C /* AddFriendViewController.swift in Sources */,
 				DEB752432A462DBB0072803F /* ImageViewUtils.swift in Sources */,
+				0114C1BB2A464911001A558C /* AddFriendView.swift in Sources */,
 				DECEDDB92A3E13B700B99A82 /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
