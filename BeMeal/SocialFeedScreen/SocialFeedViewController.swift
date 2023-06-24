@@ -20,6 +20,7 @@ class SocialFeedViewController: UIViewController {
     let database = Firestore.firestore()
     var timer: Timer!
     var posts = [Post]()
+    var userFriends = [String]()
     
     
     
@@ -43,7 +44,6 @@ class SocialFeedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupNavigationBar()
         
         //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
@@ -66,6 +66,7 @@ class SocialFeedViewController: UIViewController {
                 self.currentUser = user
                 self.socialFeedScreen.labelWelcome.text = "Welcome \(user?.displayName ?? "Anonymous")! Please select a meal feed"
                 self.enableButtons()
+                self.getUserFriends()
                 
                 //MARK: Logout bar button...
                 self.setupRightBarButton(isLoggedin: true)
@@ -135,6 +136,7 @@ class SocialFeedViewController: UIViewController {
         socialFeedScreen.buttonBreakfastFeed.tintColor = .white
         socialFeedScreen.buttonLunchFeed.tintColor = .none
         socialFeedScreen.buttonDinnerFeed.tintColor = .none
+        
         print("Breakfast Time")
         self.database.collection("breakfastPost")
             .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
@@ -142,10 +144,12 @@ class SocialFeedViewController: UIViewController {
                     self.posts.removeAll()
                     for document in documents{
                         do{
-                            print(document)
-                            let post  = try document.data(as: Post.self)
-                            
-                            self.posts.append(post)
+                            let post = try document.data(as: Post.self)
+                            print(self.userFriends)
+                            if self.userFriends.contains(post.user.email) {
+                                self.posts.append(post)
+                                print(document)
+                            }
                         }catch{
                             print(error)
                         }
@@ -196,7 +200,7 @@ class SocialFeedViewController: UIViewController {
                     for document in documents{
                         do{
                             print(document)
-                            let post  = try document.data(as: Post.self)
+                            let post = try document.data(as: Post.self)
                             self.posts.append(post)
                         }catch{
                             print(error)
@@ -207,6 +211,24 @@ class SocialFeedViewController: UIViewController {
                     self.socialFeedScreen.tableViewPost.reloadData()
                 }
             })
+    }
+    
+    func getUserFriends() {
+        userFriends.removeAll()
+        
+        database.collection("users").document(currentUser!.email!).collection("friends").getDocuments()
+        {querySnapshot, error in
+                if let documents = querySnapshot?.documents{
+                    
+                    for document in documents{
+                        do{
+                            let user = try document.data(as: friend.self)
+                            self.userFriends.append(user.email)
+                        }catch{
+                            print(error)
+                        }
+                    }
+                }}
     }
     
 }

@@ -13,7 +13,6 @@ class profileScreenView: UIView {
     var nameLabel: UILabel!
     var usernameLabel: UILabel!
     var streakCountLabel: UILabel!
-    var dailyProgress: UIView!
     
     
     override init(frame: CGRect) {
@@ -23,7 +22,6 @@ class profileScreenView: UIView {
         
         setupButton()
         setupLabels()
-        setupDailyProgress()
         initConstraints()
     }
     
@@ -37,13 +35,13 @@ class profileScreenView: UIView {
     
     func setupLabels() {
         nameLabel = UILabel()
-        nameLabel.font = nameLabel.font.withSize(20)
+        nameLabel.font = nameLabel.font.withSize(30)
         nameLabel.text = "Example Name"
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(nameLabel)
         
         usernameLabel = UILabel()
-        usernameLabel.font = nameLabel.font.withSize(10)
+        usernameLabel.font = nameLabel.font.withSize(15)
         usernameLabel.text = "Example Username"
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(usernameLabel)
@@ -53,13 +51,6 @@ class profileScreenView: UIView {
         streakCountLabel.text = "Current Streak: 0 🔥"
         streakCountLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(streakCountLabel)
-    }
-    
-    func setupDailyProgress() {
-        dailyProgress = UIView()
-        dailyProgress = dailyProgressView()
-        dailyProgress.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(dailyProgress)
     }
     
     func initConstraints() {
@@ -78,9 +69,6 @@ class profileScreenView: UIView {
             
             streakCountLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor),
             streakCountLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            
-            dailyProgress.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 200),
-            dailyProgress.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
         ])
     }
     
