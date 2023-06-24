@@ -126,13 +126,13 @@
 				01117AC42A33EEF50081D090 /* ViewController.swift */,
 				DED0DDC92A45DD9F00C8010B /* Progress Indicator */,
 				DED0DDBF2A45DD4400C8010B /* Register Screen */,
+				0114C1BC2A464916001A558C /* Add Friend Screen */,
 				DE52E3C12A43BF5E004E6F2F /* Profile Screen */,
 				DECEDDBA2A3E13BD00B99A82 /* Data Models */,
 				DE245A992A3DF6F7003C9485 /* SocialFeedScreen */,
 				01117AC62A33EEF50081D090 /* Main.storyboard */,
 				01117AC92A33EEF60081D090 /* Assets.xcassets */,
 				01117ACB2A33EEF60081D090 /* LaunchScreen.storyboard */,
-				0114C1BC2A464916001A558C /* Add Friend Screen */,
 				01117ACE2A33EEF60081D090 /* Info.plist */,
 				DE52E3B62A439F89004E6F2F /* GoogleService-Info.plist */,
 			);
@@ -143,8 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				0114C1B82A4648F1001A558C /* AddFriendViewController.swift */,
-				0114C1BF2A464940001A558C /* Views */,
 				0114C1C02A4649F2001A558C /* SearchBarButtonManager.swift */,
+				0114C1BF2A464940001A558C /* Views */,
 			);
 			path = "Add Friend Screen";
 			sourceTree = "<group>";

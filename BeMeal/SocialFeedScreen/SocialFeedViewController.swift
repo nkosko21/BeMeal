@@ -21,6 +21,7 @@ class SocialFeedViewController: UIViewController {
     let database = Firestore.firestore()
     var timer: Timer!
     var posts = [Post]()
+    var friends = [Friend]()
     
     
     
@@ -35,6 +36,11 @@ class SocialFeedViewController: UIViewController {
         photoPicker.delegate = self
         
         present(photoPicker, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     override func loadView() {
@@ -70,6 +76,28 @@ class SocialFeedViewController: UIViewController {
                 
                 //MARK: Logout bar button...
                 self.setupRightBarButton(isLoggedin: true)
+                
+                
+                //MARK: Observe Current Friends...
+                self.database.collection("users")
+                    .document((self.currentUser?.email)!)
+                    .collection("friends")
+                    .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                        if let documents = querySnapshot?.documents{
+                            self.friends.removeAll()
+                            for document in documents{
+                                do {
+                                    let friend  = try document.data(as: Friend.self)
+                                    self.friends.append(friend)
+                                } catch{
+                                    print(error)
+                                }
+                            }
+                            
+                            self.friends.sort(by: {$0.email < $1.email})
+                            print(self.friends)
+                        }
+                })
             }
         }
                 
@@ -134,8 +162,6 @@ class SocialFeedViewController: UIViewController {
     }
     
     @objc func onButtonDisplayBreakfast() {
-        
-        
         if let timeText = socialFeedScreen.labelDateTime.text {
             print(timeFormater.string(from: myDateFormatter.date(from: timeText)!))
             if let currentTime =  myDateFormatter.date(from: timeText) {
@@ -154,10 +180,11 @@ class SocialFeedViewController: UIViewController {
                                 self.posts.removeAll()
                                 for document in documents{
                                     do{
-                                        print(document)
                                         let post  = try document.data(as: Post.self)
-                                        
-                                        self.posts.append(post)
+                                        print(post.user)
+                                        if self.friends.contains(where: {$0.isFriend == true && $0.email == post.user.email} ) {
+                                            self.posts.append(post)
+                                        }
                                     }catch{
                                         print(error)
                                     }
@@ -180,7 +207,7 @@ class SocialFeedViewController: UIViewController {
         if let timeText = socialFeedScreen.labelDateTime.text {
             print(timeFormater.string(from: myDateFormatter.date(from: timeText)!))
             if let currentTime =  myDateFormatter.date(from: timeText) {
-                if currentTime > timeFormater.date(from: "12:00 PM")! {
+                if currentTime < timeFormater.date(from: "12:00 PM")! {
                     showErrorAlert("Not lunch time yet! Please wait till 12:00 PM")
                 } else {
                     //MARK: Change Button Colors to select Lunch...
@@ -195,9 +222,10 @@ class SocialFeedViewController: UIViewController {
                                 self.posts.removeAll()
                                 for document in documents{
                                     do{
-                                        print(document)
                                         let post  = try document.data(as: Post.self)
-                                        self.posts.append(post)
+                                        if self.friends.contains(where: {$0.isFriend == true && $0.email == post.user.email} ) {
+                                            self.posts.append(post)
+                                        }
                                     }catch{
                                         print(error)
                                     }
@@ -218,7 +246,7 @@ class SocialFeedViewController: UIViewController {
         if let timeText = socialFeedScreen.labelDateTime.text {
             if let currentTime =  myDateFormatter.date(from: timeText) {
                 print(currentTime.description)
-                if currentTime > timeFormater.date(from: "7:00 PM")! {
+                if currentTime < timeFormater.date(from: "7:00 PM")! {
                     showErrorAlert("Not dinner time yet. Please wait till 7:00PM")
                 } else {
                     //MARK: Change Button Colors to select Dinner...
@@ -235,11 +263,14 @@ class SocialFeedViewController: UIViewController {
                                     do{
                                         print(document)
                                         let post  = try document.data(as: Post.self)
-                                        self.posts.append(post)
+                                        if self.friends.contains(where: {$0.isFriend == true && $0.email == post.user.email} ) {
+                                            self.posts.append(post)
+                                        }
                                     }catch{
                                         print(error)
                                     }
                                 }
+                                print(self.posts)
                                 self.posts.sort(by: {
                                     self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
                                 self.socialFeedScreen.tableViewPost.reloadData()

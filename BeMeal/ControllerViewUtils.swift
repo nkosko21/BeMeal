@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+import FirebaseFirestoreSwift
+import Firebase
 
 extension UIViewController {
     //MARK: Displays Error Alert...
@@ -17,4 +19,6 @@ extension UIViewController {
             
             self.present(alert, animated: true)
     }
+    
+
 }

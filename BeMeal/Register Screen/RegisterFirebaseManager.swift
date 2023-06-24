@@ -77,17 +77,36 @@ extension RegisterViewController{
         
         //MARK: show progress indicator...
         showActivityIndicator()
+        
+        //MARK: Adds this user to the list of users
         do{
             try collectionUsers.setData(from: user, completion: {(error) in
                 if error == nil{
-                    //MARK: hide progress indicator...
-                    self.hideActivityIndicator()
+                    //MARK: Adds self to friends list (people who have access to post)...
+                    let collectionFriends = self.database
+                        .collection("users")
+                        .document(user.email.lowercased())
+                        .collection("friends")
+                        .document(user.email.lowercased())
                     
-                    self.navigationController?.popViewController(animated: true)
+                    
+                    do{
+                        try collectionFriends.setData(from: Friend(email: user.email.lowercased(), isFriend: true), completion: {(error) in
+                            if error == nil{
+                                //MARK: hide progress indicator...
+                                self.hideActivityIndicator()
+                                
+                                self.navigationController?.popViewController(animated: true)
+                            }
+                        })
+                        
+                    } catch{
+                        print("Error adding document!")
+                    }
                 }
             })
-            collectionUsers.collection("chats")
-        }catch{
+            
+        } catch{
             print("Error adding document!")
         }
     }

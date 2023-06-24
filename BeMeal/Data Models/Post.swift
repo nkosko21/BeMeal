@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseFirestoreSwift
+import Firebase
 
 struct Post:Codable {
     @DocumentID var id: String?
@@ -16,15 +17,14 @@ struct Post:Codable {
     var caption: String
     var mealType: String
     var date: String
-    var username: String
+    var user: User
     
-    init(photoURL: String, userEmail: String, macros: [Int], caption: String, mealType: String, date: String, username: String) {
+    init(photoURL: String, userEmail: String, macros: [Int], caption: String, mealType: String, date: String, user: User) {
         self.photoURL = photoURL
         self.macros = macros
         self.caption = caption
         self.mealType = mealType
         self.date = date
-        self.username = username
-        
-    }
+        self.user = user
+    } 
 }
