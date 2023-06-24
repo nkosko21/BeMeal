@@ -63,7 +63,8 @@ extension SocialFeedViewController{
     
     @objc func addFriendScreen() {
             var addFriendScreen = addFriendViewController()
-            
+            addFriendScreen.currentUser = User(name: currentUser!.displayName!, email: currentUser!.email!, photoURL: "not needed")
+        
             navigationController?.pushViewController(addFriendScreen, animated: true)
         }
     @objc func onSignInBarButtonTapped(){
@@ -149,8 +150,26 @@ extension SocialFeedViewController{
     }
     
     @objc func onButtonNavigate() {
-        let profileScreen = profileScreenViewController()
-        navigationController?.pushViewController(profileScreen, animated: true)
+        let userData = database.collection("users").document(currentUser!.email!)
+        
+        userData.getDocument(source: .cache) { (document, error) in
+                    if let document = document {
+                        let photoURL = document.get("photoURL") as! String
+                        
+                        let profileScreen = profileScreenViewController()
+                        profileScreen.profileScreen.nameLabel.text = self.currentUser!.displayName!
+                        profileScreen.profileScreen.usernameLabel.text = self.currentUser!.email!
+                        
+                        if let url = URL(string: photoURL) {
+                            profileScreen.profileScreen.profilePic.loadRemoteImage(from: url)
+                        }
+                        
+                        self.navigationController?.pushViewController(profileScreen, animated: true)
+                    } else {
+                        print("Document does not exist in cache")
+                    }
+                }
+    
     }
     
     @objc func onButtonLogout() {
