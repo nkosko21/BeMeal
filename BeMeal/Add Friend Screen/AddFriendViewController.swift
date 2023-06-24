@@ -15,6 +15,7 @@ class addFriendViewController: UIViewController {
     let database = Firestore.firestore()
     var searchedFriends = [User]()
     var addFriendScreen = addFriendView()
+    var currentUser: User!
     var currentFriend: User!
     
     override func loadView() {

@@ -31,7 +31,6 @@ extension addFriendViewController {
                         for friend in self.searchedFriends {
                             if friend.name == name {
                                 self.currentFriend = friend
-                                
                                 self.getFriendDetails(friend: friend)
                                 self.addFriendScreen.addFriendButton.setTitle("Add Friend", for: .normal)
                                 

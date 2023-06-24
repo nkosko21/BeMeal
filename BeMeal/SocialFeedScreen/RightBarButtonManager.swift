@@ -63,7 +63,8 @@ extension SocialFeedViewController{
     
     @objc func addFriendScreen() {
             var addFriendScreen = addFriendViewController()
-            
+            addFriendScreen.currentUser = User(name: currentUser!.displayName!, email: currentUser!.email!, photoURL: "not needed")
+        
             navigationController?.pushViewController(addFriendScreen, animated: true)
         }
     @objc func onSignInBarButtonTapped(){
