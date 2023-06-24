@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class profileScreenView: UIView {
-    var profilePicButton: UIButton!
+    var profilePic: UIImageView!
     var nameLabel: UILabel!
     var usernameLabel: UILabel!
     var streakCountLabel: UILabel!
@@ -28,10 +28,11 @@ class profileScreenView: UIView {
     }
     
     func setupButton() {
-        profilePicButton = UIButton(type: .system)
-        profilePicButton.setImage(UIImage(systemName: "person"), for: .normal)
-        profilePicButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(profilePicButton)
+        profilePic = UIImageView()
+        profilePic.contentMode = .scaleToFill
+        profilePic.image = UIImage(systemName: "person")
+        profilePic.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(profilePic)
     }
     
     func setupLabels() {
@@ -63,10 +64,13 @@ class profileScreenView: UIView {
     
     func initConstraints() {
         NSLayoutConstraint.activate([
-            profilePicButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            profilePicButton.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            profilePic.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            profilePic.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 50),
+            profilePic.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -50),
+            profilePic.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 250),
+            profilePic.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
-            nameLabel.topAnchor.constraint(equalTo: profilePicButton.bottomAnchor),
+            nameLabel.topAnchor.constraint(equalTo: profilePic.bottomAnchor),
             nameLabel.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
             usernameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),

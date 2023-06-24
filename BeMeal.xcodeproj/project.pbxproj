@@ -22,7 +22,6 @@
 		DE52E3BC2A43A0BD004E6F2F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DE52E3BB2A43A0BD004E6F2F /* FirebaseFirestore */; };
 		DE52E3BE2A43A0BD004E6F2F /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = DE52E3BD2A43A0BD004E6F2F /* FirebaseFirestoreSwift */; };
 		DE52E3C02A43A0BD004E6F2F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DE52E3BF2A43A0BD004E6F2F /* FirebaseStorage */; };
-		DE52E3C62A43BF5E004E6F2F /* DailyProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52E3C22A43BF5E004E6F2F /* DailyProgressManager.swift */; };
 		DE52E3C72A43BF5E004E6F2F /* ProfileScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52E3C32A43BF5E004E6F2F /* ProfileScreenViewController.swift */; };
 		DE52E3C82A43BF5E004E6F2F /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52E3C52A43BF5E004E6F2F /* ProfileScreenView.swift */; };
 		DEB41B482A43C32400FE04D0 /* DailyProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB41B472A43C32400FE04D0 /* DailyProgressView.swift */; };
@@ -59,7 +58,6 @@
 		0114C1C02A4649F2001A558C /* SearchBarButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButtonManager.swift; sourceTree = "<group>"; };
 		013BBFA42A4749A6000F6EA9 /* AddFriendButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendButtonManager.swift; sourceTree = "<group>"; };
 		DE52E3B62A439F89004E6F2F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		DE52E3C22A43BF5E004E6F2F /* DailyProgressManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyProgressManager.swift; sourceTree = "<group>"; };
 		DE52E3C32A43BF5E004E6F2F /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
 		DE52E3C52A43BF5E004E6F2F /* ProfileScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
 		DEB41B472A43C32400FE04D0 /* DailyProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyProgressView.swift; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 		DE52E3C12A43BF5E004E6F2F /* Profile Screen */ = {
 			isa = PBXGroup;
 			children = (
-				DE52E3C22A43BF5E004E6F2F /* DailyProgressManager.swift */,
 				DE52E3C32A43BF5E004E6F2F /* ProfileScreenViewController.swift */,
 				DE52E3C42A43BF5E004E6F2F /* Views */,
 			);
@@ -326,7 +323,6 @@
 				DECEDDB62A3E0EB900B99A82 /* SocialFeedViewController.swift in Sources */,
 				DE52E3C82A43BF5E004E6F2F /* ProfileScreenView.swift in Sources */,
 				DED0DDD52A45FC2800C8010B /* RightBarButtonManager.swift in Sources */,
-				DE52E3C62A43BF5E004E6F2F /* DailyProgressManager.swift in Sources */,
 				DED0DDC62A45DD4400C8010B /* RegisterProgressIndicatorManager.swift in Sources */,
 				01117AC12A33EEF50081D090 /* AppDelegate.swift in Sources */,
 				DED0DDBE2A44D91D00C8010B /* Users.swift in Sources */,
