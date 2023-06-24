@@ -27,19 +27,22 @@ extension addFriendViewController {
                                 print(error)
                             }
                         }
+                        
+                        for friend in self.searchedFriends {
+                            if friend.name == name {
+                                self.currentFriend = friend
+                                
+                                self.getFriendDetails(friend: friend)
+                                self.addFriendScreen.addFriendButton.setTitle("Add Friend", for: .normal)
+                                
+                                return
+                            }
+                        }
+                        
+                        let alert = UIAlertController(title: "Alert", message: "There is no user with that name", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+                        self.present(alert, animated: true)
                     }})
-            
-            for friend in searchedFriends {
-                if friend.name == name {
-                    getFriendDetails(friend: friend)
-                    
-                    return
-                }
-            }
-            
-            let alert = UIAlertController(title: "Alert", message: "There is no user with that name", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default))
-            self.present(alert, animated: true)
         } else {
             let alert = UIAlertController(title: "Alert", message: "Enter the name of new friend", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default))
@@ -49,10 +52,11 @@ extension addFriendViewController {
     
     // this is the user that the person searched for
     func getFriendDetails(friend: User) {
-//        if let url = URL(string: friend.photoURL) {
-//            imageloadRemoteImage(from: url)
-//        } else {
-//            cell.imageFood.image = UIImage()
-//        }
+        addFriendScreen.searchedFriendEmail.text = friend.email
+        addFriendScreen.searchedFriendName.text = friend.name
+        
+        if let url = URL(string: friend.photoURL) {
+            addFriendScreen.searchedFriendImage.loadRemoteImage(from: url)
+        }
     }
 }

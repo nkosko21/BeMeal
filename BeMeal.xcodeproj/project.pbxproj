@@ -15,8 +15,8 @@
 		01117ACD2A33EEF60081D090 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01117ACB2A33EEF60081D090 /* LaunchScreen.storyboard */; };
 		0114C1B92A4648F1001A558C /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114C1B82A4648F1001A558C /* AddFriendViewController.swift */; };
 		0114C1BB2A464911001A558C /* AddFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114C1BA2A464911001A558C /* AddFriendView.swift */; };
-		0114C1BE2A46493B001A558C /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114C1BD2A46493B001A558C /* FriendCell.swift */; };
 		0114C1C12A4649F2001A558C /* SearchBarButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0114C1C02A4649F2001A558C /* SearchBarButtonManager.swift */; };
+		013BBFA52A4749A6000F6EA9 /* AddFriendButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 013BBFA42A4749A6000F6EA9 /* AddFriendButtonManager.swift */; };
 		DE52E3B72A439F89004E6F2F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE52E3B62A439F89004E6F2F /* GoogleService-Info.plist */; };
 		DE52E3BA2A43A0BD004E6F2F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DE52E3B92A43A0BD004E6F2F /* FirebaseAuth */; };
 		DE52E3BC2A43A0BD004E6F2F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = DE52E3BB2A43A0BD004E6F2F /* FirebaseFirestore */; };
@@ -56,8 +56,8 @@
 		01117ACE2A33EEF60081D090 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0114C1B82A4648F1001A558C /* AddFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendViewController.swift; sourceTree = "<group>"; };
 		0114C1BA2A464911001A558C /* AddFriendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendView.swift; sourceTree = "<group>"; };
-		0114C1BD2A46493B001A558C /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		0114C1C02A4649F2001A558C /* SearchBarButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButtonManager.swift; sourceTree = "<group>"; };
+		013BBFA42A4749A6000F6EA9 /* AddFriendButtonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendButtonManager.swift; sourceTree = "<group>"; };
 		DE52E3B62A439F89004E6F2F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE52E3C22A43BF5E004E6F2F /* DailyProgressManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyProgressManager.swift; sourceTree = "<group>"; };
 		DE52E3C32A43BF5E004E6F2F /* ProfileScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScreenViewController.swift; sourceTree = "<group>"; };
@@ -140,8 +140,9 @@
 			isa = PBXGroup;
 			children = (
 				0114C1B82A4648F1001A558C /* AddFriendViewController.swift */,
-				0114C1BF2A464940001A558C /* Views */,
 				0114C1C02A4649F2001A558C /* SearchBarButtonManager.swift */,
+				013BBFA42A4749A6000F6EA9 /* AddFriendButtonManager.swift */,
+				0114C1BF2A464940001A558C /* Views */,
 			);
 			path = "Add Friend Screen";
 			sourceTree = "<group>";
@@ -150,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				0114C1BA2A464911001A558C /* AddFriendView.swift */,
-				0114C1BD2A46493B001A558C /* FriendCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -328,7 +328,6 @@
 				DED0DDD52A45FC2800C8010B /* RightBarButtonManager.swift in Sources */,
 				DE52E3C62A43BF5E004E6F2F /* DailyProgressManager.swift in Sources */,
 				DED0DDC62A45DD4400C8010B /* RegisterProgressIndicatorManager.swift in Sources */,
-				0114C1BE2A46493B001A558C /* FriendCell.swift in Sources */,
 				01117AC12A33EEF50081D090 /* AppDelegate.swift in Sources */,
 				DED0DDBE2A44D91D00C8010B /* Users.swift in Sources */,
 				DED0DDCD2A45DD9F00C8010B /* ProgressSpinnerDelegate.swift in Sources */,
@@ -342,6 +341,7 @@
 				DEB752432A462DBB0072803F /* ImageViewUtils.swift in Sources */,
 				0114C1BB2A464911001A558C /* AddFriendView.swift in Sources */,
 				DECEDDB92A3E13B700B99A82 /* PostTableViewCell.swift in Sources */,
+				013BBFA52A4749A6000F6EA9 /* AddFriendButtonManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

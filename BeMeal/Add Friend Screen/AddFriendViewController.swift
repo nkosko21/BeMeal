@@ -15,6 +15,7 @@ class addFriendViewController: UIViewController {
     let database = Firestore.firestore()
     var searchedFriends = [User]()
     var addFriendScreen = addFriendView()
+    var currentFriend: User!
     
     override func loadView() {
         view = addFriendScreen
@@ -24,5 +25,6 @@ class addFriendViewController: UIViewController {
         super.viewDidLoad()
         
         addFriendScreen.searchButton.addTarget(self, action: #selector(searchFriend), for: .touchUpInside)
+        addFriendScreen.addFriendButton.addTarget(self, action: #selector(addFriend), for: .touchUpInside)
     }
 }
