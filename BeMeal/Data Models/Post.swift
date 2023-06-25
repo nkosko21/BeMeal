@@ -8,12 +8,10 @@
 import Foundation
 import UIKit
 import FirebaseFirestoreSwift
-import Firebase
 
 struct Post:Codable {
     @DocumentID var id: String?
     var photoURL: String
-    var macros: [Int]
     var caption: String
     var mealType: String
     var date: String
