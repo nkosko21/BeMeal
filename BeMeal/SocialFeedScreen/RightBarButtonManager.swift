@@ -153,23 +153,22 @@ extension SocialFeedViewController{
         let userData = database.collection("users").document(currentUser!.email!)
         
         userData.getDocument(source: .cache) { (document, error) in
-                    if let document = document {
-                        let photoURL = document.get("photoURL") as! String
-                        
-                        let profileScreen = profileScreenViewController()
-                        profileScreen.profileScreen.nameLabel.text = self.currentUser!.displayName!
-                        profileScreen.profileScreen.usernameLabel.text = self.currentUser!.email!
-                        
-                        if let url = URL(string: photoURL) {
-                            profileScreen.profileScreen.profilePic.loadRemoteImage(from: url)
-                        }
-                        
-                        self.navigationController?.pushViewController(profileScreen, animated: true)
-                    } else {
-                        print("Document does not exist in cache")
-                    }
+            if let document = document {
+                let photoURL = document.get("photoURL") as! String
+                
+                let profileScreen = profileScreenViewController()
+                profileScreen.profileScreen.nameLabel.text = self.currentUser!.displayName!
+                profileScreen.profileScreen.usernameLabel.text = self.currentUser!.email!
+                
+                if let url = URL(string: photoURL) {
+                    profileScreen.profileScreen.profilePic.loadRemoteImage(from: url)
                 }
-    
+                
+                self.navigationController?.pushViewController(profileScreen, animated: true)
+            } else {
+                print("Document does not exist in cache")
+            }
+        }
     }
     
     @objc func onButtonLogout() {
