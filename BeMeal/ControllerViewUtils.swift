@@ -19,6 +19,16 @@ extension UIViewController {
             
             self.present(alert, animated: true)
     }
+    
+    //MARK: Checks if String is Integer..
+    func isInt(possibleInt: String) -> Bool {
+        if let convertedNumber = Int(possibleInt) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
 }
 
 

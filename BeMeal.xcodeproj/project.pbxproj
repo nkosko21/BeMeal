@@ -46,6 +46,9 @@
 		DEF7C8A72A4806E20008319B /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8A22A4806E20008319B /* PostTableViewCell.swift */; };
 		DEF7C8A82A4806E20008319B /* SocialFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8A32A4806E20008319B /* SocialFeedView.swift */; };
 		DEF7C8AA2A4807920008319B /* MealTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8A92A4807920008319B /* MealTypes.swift */; };
+		DEF7C8AC2A4869A70008319B /* NewPostFirebaseManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8AB2A4869A70008319B /* NewPostFirebaseManger.swift */; };
+		DEF7C8AE2A487A030008319B /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8AD2A487A030008319B /* DateUtils.swift */; };
+		DEF7C8B02A4891D30008319B /* SocialFeedProgressManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8AF2A4891D30008319B /* SocialFeedProgressManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +89,9 @@
 		DEF7C8A22A4806E20008319B /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		DEF7C8A32A4806E20008319B /* SocialFeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialFeedView.swift; sourceTree = "<group>"; };
 		DEF7C8A92A4807920008319B /* MealTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTypes.swift; sourceTree = "<group>"; };
+		DEF7C8AB2A4869A70008319B /* NewPostFirebaseManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostFirebaseManger.swift; sourceTree = "<group>"; };
+		DEF7C8AD2A487A030008319B /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
+		DEF7C8AF2A4891D30008319B /* SocialFeedProgressManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFeedProgressManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,7 @@
 			children = (
 				DEF7C8A92A4807920008319B /* MealTypes.swift */,
 				DEBEF4652A42375B00AF5C46 /* Configs.swift */,
+				DEF7C8AD2A487A030008319B /* DateUtils.swift */,
 				DEB752422A462DBB0072803F /* ImageViewUtils.swift */,
 				DEDC15182A4728C6008AA257 /* ControllerViewUtils.swift */,
 				01117AC02A33EEF50081D090 /* AppDelegate.swift */,
@@ -131,10 +138,10 @@
 				01117AC42A33EEF50081D090 /* ViewController.swift */,
 				DED0DDC92A45DD9F00C8010B /* Progress Indicator */,
 				DED0DDBF2A45DD4400C8010B /* Register Screen */,
-				DEF7C8952A4806B50008319B /* New Post Screen */,
 				DE52E3C12A43BF5E004E6F2F /* Profile Screen */,
 				DECEDDBA2A3E13BD00B99A82 /* Data Models */,
 				0114C1BC2A464916001A558C /* Add Friend Screen */,
+				DEF7C8952A4806B50008319B /* New Post Screen */,
 				DEF7C89D2A4806E20008319B /* SocialFeedScreen */,
 				01117AC62A33EEF50081D090 /* Main.storyboard */,
 				01117AC92A33EEF60081D090 /* Assets.xcassets */,
@@ -223,8 +230,9 @@
 		DEF7C8952A4806B50008319B /* New Post Screen */ = {
 			isa = PBXGroup;
 			children = (
-				DEF7C8962A4806B50008319B /* ImagePickerManager.swift */,
 				DEF7C8972A4806B50008319B /* NewPostViewController.swift */,
+				DEF7C8AB2A4869A70008319B /* NewPostFirebaseManger.swift */,
+				DEF7C8962A4806B50008319B /* ImagePickerManager.swift */,
 				DEF7C8982A4806B50008319B /* views */,
 			);
 			path = "New Post Screen";
@@ -242,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				DEF7C89E2A4806E20008319B /* SocialFeedViewController.swift */,
+				DEF7C8AF2A4891D30008319B /* SocialFeedProgressManager.swift */,
 				DEF7C89F2A4806E20008319B /* RightBarButtonManager.swift */,
 				DEF7C8A02A4806E20008319B /* PostTableViewManager.swift */,
 				DEF7C8A12A4806E20008319B /* Views */,
@@ -361,10 +370,13 @@
 				DE52E3C72A43BF5E004E6F2F /* ProfileScreenViewController.swift in Sources */,
 				DECEDDBC2A3E13D000B99A82 /* Post.swift in Sources */,
 				DEBEF4662A42375B00AF5C46 /* Configs.swift in Sources */,
+				DEF7C8AE2A487A030008319B /* DateUtils.swift in Sources */,
+				DEF7C8B02A4891D30008319B /* SocialFeedProgressManager.swift in Sources */,
 				DEF7C8A42A4806E20008319B /* SocialFeedViewController.swift in Sources */,
 				DEF7C8A62A4806E20008319B /* PostTableViewManager.swift in Sources */,
 				DEF7C8A82A4806E20008319B /* SocialFeedView.swift in Sources */,
 				0114C1B92A4648F1001A558C /* AddFriendViewController.swift in Sources */,
+				DEF7C8AC2A4869A70008319B /* NewPostFirebaseManger.swift in Sources */,
 				DEB752432A462DBB0072803F /* ImageViewUtils.swift in Sources */,
 				0114C1BB2A464911001A558C /* AddFriendView.swift in Sources */,
 				013BBFA52A4749A6000F6EA9 /* AddFriendButtonManager.swift in Sources */,

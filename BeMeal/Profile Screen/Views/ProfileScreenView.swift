@@ -18,7 +18,7 @@ class profileScreenView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .white
+        backgroundColor = .black
         
         setupButton()
         setupLabels()
@@ -29,26 +29,30 @@ class profileScreenView: UIView {
         profilePic = UIImageView()
         profilePic.contentMode = .scaleToFill
         profilePic.image = UIImage(systemName: "person")
+        profilePic.clipsToBounds = true
         profilePic.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(profilePic)
     }
     
     func setupLabels() {
         nameLabel = UILabel()
-        nameLabel.font = nameLabel.font.withSize(30)
+        nameLabel.font = nameLabel.font.withSize(50)
         nameLabel.text = "Example Name"
+        nameLabel.textColor = .white
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(nameLabel)
         
         usernameLabel = UILabel()
-        usernameLabel.font = nameLabel.font.withSize(15)
+        usernameLabel.font = nameLabel.font.withSize(25)
         usernameLabel.text = "Example Username"
+        usernameLabel.textColor = .white
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(usernameLabel)
         
         streakCountLabel = UILabel()
-        streakCountLabel.font.withSize(15)
+        streakCountLabel.font.withSize(25)
         streakCountLabel.text = "Current Streak: 0 🔥"
+        streakCountLabel.textColor = .white
         streakCountLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(streakCountLabel)
     }
@@ -58,7 +62,8 @@ class profileScreenView: UIView {
             profilePic.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             profilePic.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 50),
             profilePic.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -50),
-            profilePic.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 250),
+            profilePic.heightAnchor.constraint(equalToConstant: 300),
+            profilePic.widthAnchor.constraint(equalToConstant: 300),
             profilePic.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             
             nameLabel.topAnchor.constraint(equalTo: profilePic.bottomAnchor),

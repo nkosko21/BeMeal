@@ -8,6 +8,7 @@
 import UIKit
 
 class NewPostView: UIView {
+    var labelDateTime: UILabel!
     var pictureButton: UIButton!
     var textCaption: UITextView!
     var mealTypeButton: UIButton!
@@ -22,12 +23,22 @@ class NewPostView: UIView {
         super.init(frame: frame)
         backgroundColor = .black
         
+        setupDateTime()
         setupPictureButton()
         setupCaption()
         setupMacros()
         setupMealType()
         
         initConstraints()
+    }
+    
+    private func setupDateTime() {
+        labelDateTime = UILabel()
+        labelDateTime.font = .systemFont(ofSize: 15)
+        labelDateTime.textColor = .white
+        labelDateTime.text = "XX/XX/XXXX"
+        labelDateTime.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(labelDateTime)
     }
    
     private func setupPictureButton() {
@@ -102,10 +113,13 @@ class NewPostView: UIView {
     
     func initConstraints() {
         NSLayoutConstraint.activate([
-            mealTypeButton.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8),
+            labelDateTime.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 1),
+            labelDateTime.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            
+            mealTypeButton.topAnchor.constraint(equalTo: labelDateTime.bottomAnchor, constant: 3),
             mealTypeButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 5),
             
-            textInputProtein.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 5),
+            textInputProtein.topAnchor.constraint(equalTo: labelDateTime.bottomAnchor, constant: 3),
             textInputProtein.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
             textInputProtein.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -5),
             

@@ -11,11 +11,14 @@ import FirebaseFirestore
 import FirebaseStorage
 
 class NewPostViewController: UIViewController {
+    let timeFormater = DateFormatter()
+    let myDateFormatter = DateFormatter()
     let newPostScreen = NewPostView()
-    var selectedType: String?
+    var selectedType = ""
     var selectedImage: UIImage?
     var currentUser:User?
     var timestamp: String?
+    var timer: Timer!
     let database = Firestore.firestore()
     let storage = Storage.storage()
     let childProgressView = ProgressSpinnerViewController()
@@ -34,6 +37,17 @@ class NewPostViewController: UIViewController {
         newPostScreen.mealTypeButton.menu = getMealTypeMenu()
         newPostScreen.pictureButton.menu = getMenuImagePicker()
         
+        myDateFormatter.dateStyle = .medium
+        myDateFormatter.timeStyle = .medium
+        timeFormater.timeStyle = .short
+        timeFormater.dateStyle = .none
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector:#selector(self.tick) , userInfo: nil, repeats: true)
+    }
+    
+    @objc func tick() {
+        timestamp = myDateFormatter.string(from: Date())
+        newPostScreen.labelDateTime.text = myDateFormatter.string(from: Date())
     }
     
     //MARK: menu for buttonTakePhoto setup...
@@ -113,62 +127,6 @@ class NewPostViewController: UIViewController {
         )
         
         navigationItem.rightBarButtonItem = barText
-    }
-    
-    @objc func onButtonUploadPost() {
-        var postPhotoURL:URL?
-        
-        if let image = selectedImage{
-            if let jpegData = image.jpegData(compressionQuality: 80), let uwUser = currentUser, let uwDate = timestamp {
-                let storageRef = storage.reference()
-                let imagesRepo = storageRef.child("imagePost")
-                let imageRef = imagesRepo.child("\(uwUser.email)_\(uwDate).jpg")
-
-                
-                
-                let uploadTask = imageRef.putData(jpegData, completion: {(metadata, error) in
-                    if error == nil{
-                        imageRef.downloadURL(completion: {(url, error) in
-                            if error == nil{
-                                postPhotoURL = url
-                                self.sendPost(photoURL: postPhotoURL)
-                            }
-                        })
-                    }
-                })
-            }
-        }
-    }
-    
-    func sendPost(photoURL: URL?) {
-        if let uwUser = currentUser, let uwDate = timestamp, let uwURL = photoURL, let uwType = selectedType, let protein = newPostScreen.textInputProtein.text, let carbs = newPostScreen.textInputCarbs.text, let fats = newPostScreen.textInputFats.text {
-            let newPost = Post(photoURL: uwURL.description,
-                               macros: [Int(protein) ?? 0,
-                                        Int(carbs) ?? 0,
-                                        Int(fats) ?? 0],
-                               caption: newPostScreen.textCaption.text,
-                               mealType: uwType,
-                               date: uwDate,
-                               user: uwUser)
-            
-            let collectionPost = database
-                .collection("\(uwType.lowercased())Post")
-                .document("\(uwUser.email): \(uwDate)")
-            
-            showActivityIndicator()
-            do{
-                try collectionPost.setData(from: newPost, completion: {(error) in
-                    if error == nil{
-                        //MARK: hide progress indicator...
-                        self.hideActivityIndicator()
-
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                })
-            }catch{
-                showErrorAlert("Error creating post!")
-            }
-        }
     }
 }
 

@@ -16,6 +16,16 @@ class profileScreenViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let labelTitle = UILabel()
+        labelTitle.font = .systemFont(ofSize: 30)
+        labelTitle.textColor = .white
+        labelTitle.text = "Your Profile"
+        labelTitle.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        
+        navigationItem.titleView = labelTitle
     }
     
    

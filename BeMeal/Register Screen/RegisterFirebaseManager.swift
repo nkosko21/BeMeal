@@ -31,7 +31,7 @@ extension RegisterViewController{
                     }
                 })
             }
-        }else{
+        }  else{
             registerUser(photoURL: profilePhotoURL)
         }
     }

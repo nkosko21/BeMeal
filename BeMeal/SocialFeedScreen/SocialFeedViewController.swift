@@ -16,6 +16,7 @@ class SocialFeedViewController: UIViewController {
     let timeFormater = DateFormatter()
     let myDateFormatter = DateFormatter()
     let socialFeedScreen = SocialFeedView()
+    let childProgressView = ProgressSpinnerViewController()
     var handleAuth: AuthStateDidChangeListenerHandle?
     var currentUser:FirebaseAuth.User?
     let database = Firestore.firestore()
@@ -40,12 +41,15 @@ class SocialFeedViewController: UIViewController {
         
         //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
         handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
-            if user == nil{
+            if user == nil {
                 //MARK: not signed in...
                 self.currentUser = nil
                 self.socialFeedScreen.labelWelcome.text = "Please sign in/register!"
                 self.disableButtons()
                 
+                self.socialFeedScreen.buttonBreakfastFeed.tintColor = .none
+                self.socialFeedScreen.buttonLunchFeed.tintColor = .none
+                self.socialFeedScreen.buttonDinnerFeed.tintColor = .none
                 
                 //MARK: Reset tableView...
                 self.posts.removeAll()
@@ -159,11 +163,14 @@ class SocialFeedViewController: UIViewController {
     
     @objc func onButtonDisplayBreakfast() {
         if let timeText = socialFeedScreen.labelDateTime.text {
-            print(timeFormater.string(from: myDateFormatter.date(from: timeText)!))
+            let setTime = Date().setTime(hour: 4, min: 0, sec: 0)
+            
             if let currentTime =  myDateFormatter.date(from: timeText) {
-                if currentTime < timeFormater.date(from: "4:00 AM")! {
+//              print("Current:\(currentTime)  Set:\(setTime!) ")
+                if currentTime < setTime! {
                     showErrorAlert("Not breakfast time yet. Please wait till 4:00 AM")
                 } else {
+                    showActivityIndicator()
                     //MARK: Change Button Colors to select Breakfast...
                     socialFeedScreen.buttonBreakfastFeed.tintColor = .white
                     socialFeedScreen.buttonLunchFeed.tintColor = .none
@@ -177,7 +184,6 @@ class SocialFeedViewController: UIViewController {
                                 for document in documents{
                                     do{
                                         let post  = try document.data(as: Post.self)
-                                        // print(post.user)
                                         if self.friends.contains(where: {$0.isFriend == true && $0.email == post.user.email} ) {
                                             self.posts.append(post)
                                         }
@@ -190,26 +196,29 @@ class SocialFeedViewController: UIViewController {
                                     self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
                                 
                                 self.socialFeedScreen.tableViewPost.reloadData()
+                                self.hideActivityIndicator()
                             }
                     })
                 }
             }
         }
-        
-        
     }
     
     @objc func onButtonDisplayLunch() {
         if let timeText = socialFeedScreen.labelDateTime.text {
-            print(timeFormater.string(from: myDateFormatter.date(from: timeText)!))
+            let setTime = Date().setTime(hour: 12, min: 0, sec: 0)
+            
             if let currentTime =  myDateFormatter.date(from: timeText) {
-                if currentTime < timeFormater.date(from: "12:00 PM")! {
+//              print("Current:\(currentTime)  Set:\(setTime!) ")
+                if currentTime < setTime! {
                     showErrorAlert("Not lunch time yet! Please wait till 12:00 PM")
                 } else {
+                    showActivityIndicator()
                     //MARK: Change Button Colors to select Lunch...
                     socialFeedScreen.buttonBreakfastFeed.tintColor = .none
                     socialFeedScreen.buttonLunchFeed.tintColor = .white
                     socialFeedScreen.buttonDinnerFeed.tintColor = .none
+                    
                     
                     //MARK: Change Table to Lunch Feed...
                     self.database.collection("lunchPost")
@@ -229,6 +238,7 @@ class SocialFeedViewController: UIViewController {
                                 self.posts.sort(by: {
                                     self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
                                 self.socialFeedScreen.tableViewPost.reloadData()
+                                self.hideActivityIndicator()
                             }
                     })
                 }
@@ -240,11 +250,14 @@ class SocialFeedViewController: UIViewController {
     
     @objc func onButtonDisplayDinner() {
         if let timeText = socialFeedScreen.labelDateTime.text {
+            let setTime = Date().setTime(hour: 19, min: 0, sec: 0)
+            
             if let currentTime =  myDateFormatter.date(from: timeText) {
-                print(currentTime.description)
-                if currentTime < timeFormater.date(from: "7:00 PM")! {
-                    showErrorAlert("Not dinner time yet. Please wait till 7:00PM")
+//              print("Current:\(currentTime)  Set:\(setTime!) ")
+                if currentTime < setTime! {
+                    showErrorAlert("Not dinner time yet! Please wait till 7:00 PM")
                 } else {
+                    showActivityIndicator()
                     //MARK: Change Button Colors to select Dinner...
                     socialFeedScreen.buttonBreakfastFeed.tintColor = .none
                     socialFeedScreen.buttonLunchFeed.tintColor = .none
@@ -270,14 +283,12 @@ class SocialFeedViewController: UIViewController {
                                 self.posts.sort(by: {
                                     self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
                                 self.socialFeedScreen.tableViewPost.reloadData()
+                                self.hideActivityIndicator()
                             }
                     })
                 }
             }
         }
-        
-        
-        
     }
     
 }
