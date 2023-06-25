@@ -69,6 +69,19 @@ class PostTableViewCell: UITableViewCell {
         wrapperCellView.addSubview(labelMeal)
     }
     
+    func setupMacros(){
+        textMacros = UITextView()
+        textMacros.isEditable = false
+        textMacros.textColor = .white
+        textMacros.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+
+        textMacros.text = "Proteins: . g / Carbs: . g / Fats: . g"
+        textMacros.font = .systemFont(ofSize: 15)
+        textMacros.translatesAutoresizingMaskIntoConstraints = false
+        wrapperCellView.addSubview(textMacros)
+    }
+    
+    
     func setupImageFood() {
         imageFood = UIImageView()
         imageFood.sizeToFit()
@@ -140,6 +153,11 @@ class PostTableViewCell: UITableViewCell {
             imageFood.trailingAnchor.constraint(equalTo: wrapperCellView.trailingAnchor, constant: -5),
             imageFood.heightAnchor.constraint(equalToConstant: 300),
             imageFood.widthAnchor.constraint(equalToConstant: 200),
+            
+            textMacros.topAnchor.constraint(equalTo: imageFood.topAnchor),
+            textMacros.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 5),
+            textMacros.trailingAnchor.constraint(equalTo: wrapperCellView.trailingAnchor, constant: -5),
+            textMacros.heightAnchor.constraint(equalToConstant: 50),
             
             wrapperCellView.heightAnchor.constraint(equalToConstant: 600)
         ])

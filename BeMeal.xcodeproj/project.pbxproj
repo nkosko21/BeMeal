@@ -27,11 +27,6 @@
 		DE52E3C82A43BF5E004E6F2F /* ProfileScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE52E3C52A43BF5E004E6F2F /* ProfileScreenView.swift */; };
 		DEB752432A462DBB0072803F /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB752422A462DBB0072803F /* ImageViewUtils.swift */; };
 		DEBEF4662A42375B00AF5C46 /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBEF4652A42375B00AF5C46 /* Configs.swift */; };
-		DEBEF4682A423AEE00AF5C46 /* PostTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBEF4672A423AEE00AF5C46 /* PostTableViewManager.swift */; };
-		DEBEF46A2A435C3800AF5C46 /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBEF4692A435C3700AF5C46 /* ImagePickerManager.swift */; };
-		DECEDDB42A3E0E9F00B99A82 /* SocialFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEDDB32A3E0E9F00B99A82 /* SocialFeedView.swift */; };
-		DECEDDB62A3E0EB900B99A82 /* SocialFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEDDB52A3E0EB900B99A82 /* SocialFeedViewController.swift */; };
-		DECEDDB92A3E13B700B99A82 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEDDB82A3E13B700B99A82 /* PostTableViewCell.swift */; };
 		DECEDDBC2A3E13D000B99A82 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECEDDBB2A3E13D000B99A82 /* Post.swift */; };
 		DED0DDBE2A44D91D00C8010B /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0DDBD2A44D91D00C8010B /* Users.swift */; };
 		DED0DDC62A45DD4400C8010B /* RegisterProgressIndicatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0DDC12A45DD4400C8010B /* RegisterProgressIndicatorManager.swift */; };
@@ -41,8 +36,16 @@
 		DED0DDCF2A45E48000C8010B /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0DDCE2A45E48000C8010B /* RegisterView.swift */; };
 		DED0DDD12A45EC4800C8010B /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0DDD02A45EC4800C8010B /* PhotoManager.swift */; };
 		DED0DDD32A45EDAF00C8010B /* RegisterFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0DDD22A45EDAF00C8010B /* RegisterFirebaseManager.swift */; };
-		DED0DDD52A45FC2800C8010B /* RightBarButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED0DDD42A45FC2800C8010B /* RightBarButtonManager.swift */; };
 		DEDC15192A4728C6008AA257 /* ControllerViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDC15182A4728C6008AA257 /* ControllerViewUtils.swift */; };
+		DEF7C89A2A4806B60008319B /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8962A4806B50008319B /* ImagePickerManager.swift */; };
+		DEF7C89B2A4806B60008319B /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8972A4806B50008319B /* NewPostViewController.swift */; };
+		DEF7C89C2A4806B60008319B /* NewPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8992A4806B50008319B /* NewPostView.swift */; };
+		DEF7C8A42A4806E20008319B /* SocialFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C89E2A4806E20008319B /* SocialFeedViewController.swift */; };
+		DEF7C8A52A4806E20008319B /* RightBarButtonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C89F2A4806E20008319B /* RightBarButtonManager.swift */; };
+		DEF7C8A62A4806E20008319B /* PostTableViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8A02A4806E20008319B /* PostTableViewManager.swift */; };
+		DEF7C8A72A4806E20008319B /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8A22A4806E20008319B /* PostTableViewCell.swift */; };
+		DEF7C8A82A4806E20008319B /* SocialFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8A32A4806E20008319B /* SocialFeedView.swift */; };
+		DEF7C8AA2A4807920008319B /* MealTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF7C8A92A4807920008319B /* MealTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,11 +67,6 @@
 		DE52E3C52A43BF5E004E6F2F /* ProfileScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileScreenView.swift; sourceTree = "<group>"; };
 		DEB752422A462DBB0072803F /* ImageViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
 		DEBEF4652A42375B00AF5C46 /* Configs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configs.swift; sourceTree = "<group>"; };
-		DEBEF4672A423AEE00AF5C46 /* PostTableViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewManager.swift; sourceTree = "<group>"; };
-		DEBEF4692A435C3700AF5C46 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
-		DECEDDB32A3E0E9F00B99A82 /* SocialFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFeedView.swift; sourceTree = "<group>"; };
-		DECEDDB52A3E0EB900B99A82 /* SocialFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFeedViewController.swift; sourceTree = "<group>"; };
-		DECEDDB82A3E13B700B99A82 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		DECEDDBB2A3E13D000B99A82 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		DED0DDBD2A44D91D00C8010B /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		DED0DDC12A45DD4400C8010B /* RegisterProgressIndicatorManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterProgressIndicatorManager.swift; sourceTree = "<group>"; };
@@ -78,8 +76,16 @@
 		DED0DDCE2A45E48000C8010B /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		DED0DDD02A45EC4800C8010B /* PhotoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		DED0DDD22A45EDAF00C8010B /* RegisterFirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterFirebaseManager.swift; sourceTree = "<group>"; };
-		DED0DDD42A45FC2800C8010B /* RightBarButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightBarButtonManager.swift; sourceTree = "<group>"; };
 		DEDC15182A4728C6008AA257 /* ControllerViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerViewUtils.swift; sourceTree = "<group>"; };
+		DEF7C8962A4806B50008319B /* ImagePickerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
+		DEF7C8972A4806B50008319B /* NewPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
+		DEF7C8992A4806B50008319B /* NewPostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewPostView.swift; sourceTree = "<group>"; };
+		DEF7C89E2A4806E20008319B /* SocialFeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialFeedViewController.swift; sourceTree = "<group>"; };
+		DEF7C89F2A4806E20008319B /* RightBarButtonManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightBarButtonManager.swift; sourceTree = "<group>"; };
+		DEF7C8A02A4806E20008319B /* PostTableViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewManager.swift; sourceTree = "<group>"; };
+		DEF7C8A22A4806E20008319B /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		DEF7C8A32A4806E20008319B /* SocialFeedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialFeedView.swift; sourceTree = "<group>"; };
+		DEF7C8A92A4807920008319B /* MealTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +122,7 @@
 		01117ABF2A33EEF50081D090 /* BeMeal */ = {
 			isa = PBXGroup;
 			children = (
+				DEF7C8A92A4807920008319B /* MealTypes.swift */,
 				DEBEF4652A42375B00AF5C46 /* Configs.swift */,
 				DEB752422A462DBB0072803F /* ImageViewUtils.swift */,
 				DEDC15182A4728C6008AA257 /* ControllerViewUtils.swift */,
@@ -124,10 +131,11 @@
 				01117AC42A33EEF50081D090 /* ViewController.swift */,
 				DED0DDC92A45DD9F00C8010B /* Progress Indicator */,
 				DED0DDBF2A45DD4400C8010B /* Register Screen */,
-				0114C1BC2A464916001A558C /* Add Friend Screen */,
+				DEF7C8952A4806B50008319B /* New Post Screen */,
 				DE52E3C12A43BF5E004E6F2F /* Profile Screen */,
 				DECEDDBA2A3E13BD00B99A82 /* Data Models */,
-				DE245A992A3DF6F7003C9485 /* SocialFeedScreen */,
+				0114C1BC2A464916001A558C /* Add Friend Screen */,
+				DEF7C89D2A4806E20008319B /* SocialFeedScreen */,
 				01117AC62A33EEF50081D090 /* Main.storyboard */,
 				01117AC92A33EEF60081D090 /* Assets.xcassets */,
 				01117ACB2A33EEF60081D090 /* LaunchScreen.storyboard */,
@@ -156,18 +164,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		DE245A992A3DF6F7003C9485 /* SocialFeedScreen */ = {
-			isa = PBXGroup;
-			children = (
-				DECEDDB52A3E0EB900B99A82 /* SocialFeedViewController.swift */,
-				DEBEF4672A423AEE00AF5C46 /* PostTableViewManager.swift */,
-				DED0DDD42A45FC2800C8010B /* RightBarButtonManager.swift */,
-				DEBEF4692A435C3700AF5C46 /* ImagePickerManager.swift */,
-				DECEDDB72A3E138100B99A82 /* Views */,
-			);
-			path = SocialFeedScreen;
-			sourceTree = "<group>";
-		};
 		DE52E3C12A43BF5E004E6F2F /* Profile Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,15 +177,6 @@
 			isa = PBXGroup;
 			children = (
 				DE52E3C52A43BF5E004E6F2F /* ProfileScreenView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		DECEDDB72A3E138100B99A82 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				DECEDDB32A3E0E9F00B99A82 /* SocialFeedView.swift */,
-				DECEDDB82A3E13B700B99A82 /* PostTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +218,44 @@
 				DED0DDCB2A45DD9F00C8010B /* ProgressSpinnerDelegate.swift */,
 			);
 			path = "Progress Indicator";
+			sourceTree = "<group>";
+		};
+		DEF7C8952A4806B50008319B /* New Post Screen */ = {
+			isa = PBXGroup;
+			children = (
+				DEF7C8962A4806B50008319B /* ImagePickerManager.swift */,
+				DEF7C8972A4806B50008319B /* NewPostViewController.swift */,
+				DEF7C8982A4806B50008319B /* views */,
+			);
+			path = "New Post Screen";
+			sourceTree = "<group>";
+		};
+		DEF7C8982A4806B50008319B /* views */ = {
+			isa = PBXGroup;
+			children = (
+				DEF7C8992A4806B50008319B /* NewPostView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		DEF7C89D2A4806E20008319B /* SocialFeedScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DEF7C89E2A4806E20008319B /* SocialFeedViewController.swift */,
+				DEF7C89F2A4806E20008319B /* RightBarButtonManager.swift */,
+				DEF7C8A02A4806E20008319B /* PostTableViewManager.swift */,
+				DEF7C8A12A4806E20008319B /* Views */,
+			);
+			path = SocialFeedScreen;
+			sourceTree = "<group>";
+		};
+		DEF7C8A12A4806E20008319B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				DEF7C8A22A4806E20008319B /* PostTableViewCell.swift */,
+				DEF7C8A32A4806E20008319B /* SocialFeedView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,20 +339,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEBEF46A2A435C3800AF5C46 /* ImagePickerManager.swift in Sources */,
 				0114C1C12A4649F2001A558C /* SearchBarButtonManager.swift in Sources */,
 				DED0DDD12A45EC4800C8010B /* PhotoManager.swift in Sources */,
 				DED0DDD32A45EDAF00C8010B /* RegisterFirebaseManager.swift in Sources */,
+				DEF7C8A52A4806E20008319B /* RightBarButtonManager.swift in Sources */,
 				01117AC52A33EEF50081D090 /* ViewController.swift in Sources */,
+				DEF7C8A72A4806E20008319B /* PostTableViewCell.swift in Sources */,
 				DED0DDCF2A45E48000C8010B /* RegisterView.swift in Sources */,
-				DECEDDB42A3E0E9F00B99A82 /* SocialFeedView.swift in Sources */,
 				DED0DDC82A45DD4400C8010B /* RegisterViewController.swift in Sources */,
-				DECEDDB62A3E0EB900B99A82 /* SocialFeedViewController.swift in Sources */,
 				DE52E3C82A43BF5E004E6F2F /* ProfileScreenView.swift in Sources */,
-				DED0DDD52A45FC2800C8010B /* RightBarButtonManager.swift in Sources */,
+				DEF7C89A2A4806B60008319B /* ImagePickerManager.swift in Sources */,
 				DED0DDC62A45DD4400C8010B /* RegisterProgressIndicatorManager.swift in Sources */,
 				01117AC12A33EEF50081D090 /* AppDelegate.swift in Sources */,
 				DEDC15192A4728C6008AA257 /* ControllerViewUtils.swift in Sources */,
+				DEF7C8AA2A4807920008319B /* MealTypes.swift in Sources */,
 				DED0DDBE2A44D91D00C8010B /* Users.swift in Sources */,
 				DED0DDCD2A45DD9F00C8010B /* ProgressSpinnerDelegate.swift in Sources */,
 				013BBFA72A478FAC000F6EA9 /* Friend.swift in Sources */,
@@ -335,13 +360,16 @@
 				01117AC32A33EEF50081D090 /* SceneDelegate.swift in Sources */,
 				DE52E3C72A43BF5E004E6F2F /* ProfileScreenViewController.swift in Sources */,
 				DECEDDBC2A3E13D000B99A82 /* Post.swift in Sources */,
-				DEBEF4682A423AEE00AF5C46 /* PostTableViewManager.swift in Sources */,
 				DEBEF4662A42375B00AF5C46 /* Configs.swift in Sources */,
+				DEF7C8A42A4806E20008319B /* SocialFeedViewController.swift in Sources */,
+				DEF7C8A62A4806E20008319B /* PostTableViewManager.swift in Sources */,
+				DEF7C8A82A4806E20008319B /* SocialFeedView.swift in Sources */,
 				0114C1B92A4648F1001A558C /* AddFriendViewController.swift in Sources */,
 				DEB752432A462DBB0072803F /* ImageViewUtils.swift in Sources */,
 				0114C1BB2A464911001A558C /* AddFriendView.swift in Sources */,
-				DECEDDB92A3E13B700B99A82 /* PostTableViewCell.swift in Sources */,
 				013BBFA52A4749A6000F6EA9 /* AddFriendButtonManager.swift in Sources */,
+				DEF7C89C2A4806B60008319B /* NewPostView.swift in Sources */,
+				DEF7C89B2A4806B60008319B /* NewPostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

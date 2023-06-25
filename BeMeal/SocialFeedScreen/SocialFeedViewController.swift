@@ -5,6 +5,7 @@
 //  Created by Ahamadou Bah on 6/17/23.
 //
 
+
 import UIKit
 import PhotosUI
 import FirebaseAuth
@@ -15,28 +16,12 @@ class SocialFeedViewController: UIViewController {
     let timeFormater = DateFormatter()
     let myDateFormatter = DateFormatter()
     let socialFeedScreen = SocialFeedView()
-    var selectedImage: UIImage?
     var handleAuth: AuthStateDidChangeListenerHandle?
     var currentUser:FirebaseAuth.User?
     let database = Firestore.firestore()
     var timer: Timer!
     var posts = [Post]()
     var friends = [Friend]()
-    
-    
-    
-    //MARK: Pick Photo using Gallery...
-    func pickPhotoFromGallery(){
-        var configuration = PHPickerConfiguration()
-        configuration.filter = PHPickerFilter.any(of: [.images])
-        configuration.selectionLimit = 1
-        
-        
-        let photoPicker = PHPickerViewController(configuration: configuration)
-        photoPicker.delegate = self
-        
-        present(photoPicker, animated: true, completion: nil)
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,6 +73,7 @@ class SocialFeedViewController: UIViewController {
                             for document in documents{
                                 do {
                                     let friend  = try document.data(as: Friend.self)
+                                    print(friend)
                                     self.friends.append(friend)
                                 } catch{
                                     print(error)
@@ -95,7 +81,6 @@ class SocialFeedViewController: UIViewController {
                             }
                             
                             self.friends.sort(by: {$0.email < $1.email})
-                            print(self.friends)
                         }
                 })
             }
@@ -107,6 +92,7 @@ class SocialFeedViewController: UIViewController {
         socialFeedScreen.buttonBreakfastFeed.addTarget(self, action: #selector(onButtonDisplayBreakfast), for: .touchUpInside)
         socialFeedScreen.buttonLunchFeed.addTarget(self, action: #selector(onButtonDisplayLunch), for: .touchUpInside)
         socialFeedScreen.buttonDinnerFeed.addTarget(self, action: #selector(onButtonDisplayDinner), for: .touchUpInside)
+        socialFeedScreen.floatingButtonNewPost.addTarget(self, action: #selector(onButtonNewPost), for: .touchUpInside)
         
         socialFeedScreen.tableViewPost.delegate = self
         socialFeedScreen.tableViewPost.dataSource = self
@@ -161,6 +147,16 @@ class SocialFeedViewController: UIViewController {
         socialFeedScreen.labelDateTime.text = myDateFormatter.string(from: Date())
     }
     
+    @objc func onButtonNewPost() {
+        let newPostScreen = NewPostViewController()
+        if let uwName = currentUser?.displayName, let uwEmail = currentUser?.email, let uwURL = currentUser?.photoURL {
+            newPostScreen.currentUser = User(name: uwName, email: uwEmail, photoURL: uwURL.description)
+            newPostScreen.timestamp = socialFeedScreen.labelDateTime.text
+        }
+       
+        navigationController?.pushViewController(newPostScreen, animated: true)
+    }
+    
     @objc func onButtonDisplayBreakfast() {
         if let timeText = socialFeedScreen.labelDateTime.text {
             print(timeFormater.string(from: myDateFormatter.date(from: timeText)!))
@@ -181,7 +177,7 @@ class SocialFeedViewController: UIViewController {
                                 for document in documents{
                                     do{
                                         let post  = try document.data(as: Post.self)
-                                        print(post.user)
+                                        // print(post.user)
                                         if self.friends.contains(where: {$0.isFriend == true && $0.email == post.user.email} ) {
                                             self.posts.append(post)
                                         }
