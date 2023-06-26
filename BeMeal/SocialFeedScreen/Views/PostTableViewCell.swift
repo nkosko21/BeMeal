@@ -95,11 +95,12 @@ class PostTableViewCell: UITableViewCell {
     func setupCaption() {
         textCaption = UITextView()
         textCaption.isEditable = false
+        textCaption.isScrollEnabled = true
         textCaption.textColor = .white
         textCaption.backgroundColor = UIColor.black.withAlphaComponent(0.75)
 
         textCaption.text = "..........."
-        textCaption.font = .systemFont(ofSize: 20)
+        textCaption.font = .systemFont(ofSize: 15)
         textCaption.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(textCaption)
     }

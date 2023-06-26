@@ -165,11 +165,10 @@ class SocialFeedViewController: UIViewController {
             let setTime = Date().setTime(hour: 4, min: 0, sec: 0)
             
             if let currentTime =  myDateFormatter.date(from: timeText) {
-//              print("Current:\(currentTime)  Set:\(setTime!) ")
                 if currentTime < setTime! {
                     showErrorAlert("Not breakfast time yet. Please wait till 4:00 AM")
                 } else {
-                    
+                    showActivityIndicator()
                     //MARK: Change Button Colors to select Breakfast...
                     socialFeedScreen.buttonBreakfastFeed.tintColor = .white
                     socialFeedScreen.buttonLunchFeed.tintColor = .none
@@ -181,6 +180,8 @@ class SocialFeedViewController: UIViewController {
                         .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
                             if let documents = querySnapshot?.documents{
                                 self.posts.removeAll()
+                                self.socialFeedScreen.tableViewPost.reloadData()
+                                
                                 for document in documents{
                                     do{
                                         let post  = try document.data(as: Post.self)
@@ -193,11 +194,14 @@ class SocialFeedViewController: UIViewController {
                                 }
 
                                 self.posts.sort(by: {
-                                    self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
-                                
+                                self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
                                 self.socialFeedScreen.tableViewPost.reloadData()
+                                DispatchQueue.main.async(execute: {
+                                    self.hideActivityIndicator()
+                                })
                             }
                     })
+
                 }
             }
         }
@@ -212,7 +216,7 @@ class SocialFeedViewController: UIViewController {
                 if currentTime < setTime! {
                     showErrorAlert("Not lunch time yet! Please wait till 12:00 PM")
                 } else {
-                    
+                    showActivityIndicator()
                     //MARK: Change Button Colors to select Lunch...
                     socialFeedScreen.buttonBreakfastFeed.tintColor = .none
                     socialFeedScreen.buttonLunchFeed.tintColor = .white
@@ -223,6 +227,8 @@ class SocialFeedViewController: UIViewController {
                         .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
                             if let documents = querySnapshot?.documents{
                                 self.posts.removeAll()
+                                self.socialFeedScreen.tableViewPost.reloadData()
+                                
                                 for document in documents{
                                     do{
                                         let post  = try document.data(as: Post.self)
@@ -236,6 +242,9 @@ class SocialFeedViewController: UIViewController {
                                 self.posts.sort(by: {
                                     self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
                                 self.socialFeedScreen.tableViewPost.reloadData()
+                                DispatchQueue.main.async(execute: {
+                                    self.hideActivityIndicator()
+                                })
                             }
                     })
                 }
@@ -256,6 +265,7 @@ class SocialFeedViewController: UIViewController {
                     showErrorAlert("Not dinner time yet! Please wait till 7:00 PM")
                     
                 } else {
+                    showActivityIndicator()
                     //MARK: Change Button Colors to select Dinner...
                     socialFeedScreen.buttonBreakfastFeed.tintColor = .none
                     socialFeedScreen.buttonLunchFeed.tintColor = .none
@@ -266,6 +276,8 @@ class SocialFeedViewController: UIViewController {
                         .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
                             if let documents = querySnapshot?.documents{
                                 self.posts.removeAll()
+                                self.socialFeedScreen.tableViewPost.reloadData()
+                                
                                 for document in documents{
                                     do{
                                         print(document)
@@ -277,11 +289,13 @@ class SocialFeedViewController: UIViewController {
                                         print(error)
                                     }
                                 }
-                                print(self.posts)
+
                                 self.posts.sort(by: {
                                     self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
                                 self.socialFeedScreen.tableViewPost.reloadData()
-                                
+                                DispatchQueue.main.async(execute: {
+                                    self.hideActivityIndicator()
+                                })
                             }
                     })
                 }
