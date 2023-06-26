@@ -8,6 +8,7 @@
 import UIKit
 import PhotosUI
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 import FirebaseStorage
 
 class NewPostViewController: UIViewController {
@@ -22,6 +23,7 @@ class NewPostViewController: UIViewController {
     let database = Firestore.firestore()
     let storage = Storage.storage()
     let childProgressView = ProgressSpinnerViewController()
+    
     
     override func loadView() {
         view = newPostScreen

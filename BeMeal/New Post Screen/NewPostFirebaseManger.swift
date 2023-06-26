@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 extension NewPostViewController {
     @objc func onButtonUploadPost() {
@@ -85,15 +86,31 @@ extension NewPostViewController {
                                date: uwDate,
                                user: uwUser)
             
-            let collectionPost = database
+            let documentPost = database
                 .collection("\(selectedType.lowercased())Post")
                 .document("\(uwUser.email): \(uwDate)")
             
+            let documentPostRef = database
+                .collection("users")
+                .document(uwUser.email)
+                .collection("myPost")
+                .document("\(uwDate): \(selectedType.lowercased())")
+            
+            let newPostRef = PostRef(ref: documentPost)
             
             do{
-                try collectionPost.setData(from: newPost, completion: {(error) in
+                try documentPostRef.setData(from: newPostRef, completion: {(error) in
                     if error == nil{
-                        //MARK: hide progress indicator...
+                        
+                    }
+                })
+            }catch{
+                showErrorAlert("Error creating post reference!")
+            }
+            
+            do{
+                try documentPost.setData(from: newPost, completion: {(error) in
+                    if error == nil{
                         self.hideActivityIndicator()
 
                         self.navigationController?.popViewController(animated: true)

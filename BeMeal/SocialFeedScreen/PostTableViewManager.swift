@@ -15,9 +15,8 @@ extension SocialFeedViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Configs.tableViewPost, for: indexPath) as! PostTableViewCell
-
+        showActivityIndicator()
         //MARK: Fills in cell ui elements...
-
         cell.labelUser.text = "\(posts[indexPath.row].user.name) (\(posts[indexPath.row].user.email))"
         
         if let url = URL(string: posts[indexPath.row].user.photoURL ) {
@@ -44,7 +43,7 @@ extension SocialFeedViewController: UITableViewDelegate, UITableViewDataSource{
         let carbs = posts[indexPath.row].macros[1]
         let fats = posts[indexPath.row].macros[2]
         cell.textMacros.text = "Protein: \(protein)g  /  Carbs: \(carbs)g  /  Fats: \(fats)g"
-        
+        hideActivityIndicator()
         return cell
     }
     

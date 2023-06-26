@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 struct Post:Codable {
@@ -25,5 +26,14 @@ struct Post:Codable {
         self.mealType = mealType
         self.date = date
         self.user = user
+    }
+}
+
+struct PostRef:Codable {
+    @DocumentID var id: String?
+    var ref: DocumentReference
+    
+    init(ref: DocumentReference) {
+        self.ref = ref
     }
 }

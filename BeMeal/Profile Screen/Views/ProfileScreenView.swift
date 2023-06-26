@@ -51,7 +51,7 @@ class profileScreenView: UIView {
         
         streakCountLabel = UILabel()
         streakCountLabel.font.withSize(25)
-        streakCountLabel.text = "Current Streak: 0 🔥"
+        streakCountLabel.text = "Your Meal Count: 0 🔥"
         streakCountLabel.textColor = .white
         streakCountLabel.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(streakCountLabel)

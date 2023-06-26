@@ -19,20 +19,13 @@ extension SocialFeedViewController{
             )
             
             let barText = UIBarButtonItem(
-                title: "Profile",
+                title: "Profile   |",
                 style: .plain,
                 target: self,
                 action: #selector(onButtonNavigate)
             )
             navigationItem.rightBarButtonItems = [barIcon, barText]
             
-            
-//            let barIcon2 = UIBarButtonItem(
-//                image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"),
-//                style: .plain,
-//                target: self,
-//                action: #selector(onButtonLogout)
-//            )
             
             let barText2 = UIBarButtonItem(
                 title: "Logout",
@@ -62,11 +55,12 @@ extension SocialFeedViewController{
     }
     
     @objc func addFriendScreen() {
-            var addFriendScreen = addFriendViewController()
-            addFriendScreen.currentUser = User(name: currentUser!.displayName!, email: currentUser!.email!, photoURL: "not needed")
-        
-            navigationController?.pushViewController(addFriendScreen, animated: true)
-        }
+        let addFriendScreen = addFriendViewController()
+        addFriendScreen.currentUser = User(name: currentUser!.displayName!, email: currentUser!.email!, photoURL: "not needed")
+    
+        navigationController?.pushViewController(addFriendScreen, animated: true)
+    }
+    
     @objc func onSignInBarButtonTapped(){
         let signInAlert = UIAlertController(
             title: "Sign In / Register",
@@ -137,13 +131,17 @@ extension SocialFeedViewController{
     
     func signInToFirebase(email: String, password: String){
         //MARK: can you display progress indicator here?
+        showActivityIndicator()
         //MARK: authenticating the user...
         Auth.auth().signIn(withEmail: email, password: password, completion: {(result, error) in
             if error == nil{
                 //MARK: user authenticated...
                 //MARK: can you hide the progress indicator here?
+                self.hideActivityIndicator()
             }else{
                 //MARK: alert that no user found or password wrong...
+                self.showErrorAlert("Login Failed. Check password or register for an new account")
+                self.hideActivityIndicator()
             }
             
         })
@@ -152,13 +150,15 @@ extension SocialFeedViewController{
     @objc func onButtonNavigate() {
         let userData = database.collection("users").document(currentUser!.email!)
         
-        userData.getDocument(source: .cache) { (document, error) in
+        let userProfile = userData.getDocument(source: .cache) { (document, error) in
             if let document = document {
                 let photoURL = document.get("photoURL") as! String
                 
                 let profileScreen = profileScreenViewController()
-                profileScreen.profileScreen.nameLabel.text = self.currentUser!.displayName!
-                profileScreen.profileScreen.usernameLabel.text = self.currentUser!.email!
+                if let uwName = self.currentUser?.displayName, let uwEmail = self.currentUser?.email, let uwURL = self.currentUser?.photoURL {
+                    profileScreen.currentUser = User(name: uwName, email: uwEmail, photoURL: uwURL.description)
+                }
+                
                 
                 if let url = URL(string: photoURL) {
                     profileScreen.profileScreen.profilePic.loadRemoteImage(from: url)

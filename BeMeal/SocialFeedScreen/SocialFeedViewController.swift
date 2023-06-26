@@ -77,7 +77,6 @@ class SocialFeedViewController: UIViewController {
                             for document in documents{
                                 do {
                                     let friend  = try document.data(as: Friend.self)
-                                    print(friend)
                                     self.friends.append(friend)
                                 } catch{
                                     print(error)
@@ -170,11 +169,12 @@ class SocialFeedViewController: UIViewController {
                 if currentTime < setTime! {
                     showErrorAlert("Not breakfast time yet. Please wait till 4:00 AM")
                 } else {
-                    showActivityIndicator()
+                    
                     //MARK: Change Button Colors to select Breakfast...
                     socialFeedScreen.buttonBreakfastFeed.tintColor = .white
                     socialFeedScreen.buttonLunchFeed.tintColor = .none
                     socialFeedScreen.buttonDinnerFeed.tintColor = .none
+                    
                     
                     //MARK: Change Table to Breakfast Feed...
                     self.database.collection("breakfastPost")
@@ -196,7 +196,6 @@ class SocialFeedViewController: UIViewController {
                                     self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
                                 
                                 self.socialFeedScreen.tableViewPost.reloadData()
-                                self.hideActivityIndicator()
                             }
                     })
                 }
@@ -213,12 +212,11 @@ class SocialFeedViewController: UIViewController {
                 if currentTime < setTime! {
                     showErrorAlert("Not lunch time yet! Please wait till 12:00 PM")
                 } else {
-                    showActivityIndicator()
+                    
                     //MARK: Change Button Colors to select Lunch...
                     socialFeedScreen.buttonBreakfastFeed.tintColor = .none
                     socialFeedScreen.buttonLunchFeed.tintColor = .white
                     socialFeedScreen.buttonDinnerFeed.tintColor = .none
-                    
                     
                     //MARK: Change Table to Lunch Feed...
                     self.database.collection("lunchPost")
@@ -236,9 +234,8 @@ class SocialFeedViewController: UIViewController {
                                     }
                                 }
                                 self.posts.sort(by: {
-                                    self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
+                                    self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
                                 self.socialFeedScreen.tableViewPost.reloadData()
-                                self.hideActivityIndicator()
                             }
                     })
                 }
@@ -252,12 +249,13 @@ class SocialFeedViewController: UIViewController {
         if let timeText = socialFeedScreen.labelDateTime.text {
             let setTime = Date().setTime(hour: 19, min: 0, sec: 0)
             
+            
             if let currentTime =  myDateFormatter.date(from: timeText) {
 //              print("Current:\(currentTime)  Set:\(setTime!) ")
                 if currentTime < setTime! {
                     showErrorAlert("Not dinner time yet! Please wait till 7:00 PM")
+                    
                 } else {
-                    showActivityIndicator()
                     //MARK: Change Button Colors to select Dinner...
                     socialFeedScreen.buttonBreakfastFeed.tintColor = .none
                     socialFeedScreen.buttonLunchFeed.tintColor = .none
@@ -281,14 +279,13 @@ class SocialFeedViewController: UIViewController {
                                 }
                                 print(self.posts)
                                 self.posts.sort(by: {
-                                    self.myDateFormatter.date(from: $0.date)! < self.myDateFormatter.date(from: $1.date)!})
+                                    self.myDateFormatter.date(from: $0.date)! > self.myDateFormatter.date(from: $1.date)!})
                                 self.socialFeedScreen.tableViewPost.reloadData()
-                                self.hideActivityIndicator()
+                                
                             }
                     })
                 }
             }
         }
     }
-    
 }
