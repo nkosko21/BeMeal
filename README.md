@@ -9,10 +9,13 @@ Only supported on IOS devices (or simulated IOS devices)
 ## How To Use:
 ### Login in:
 To start using BeMeal, open the app and register for an account using the register button, adding a profile photo, your name, email, and password. Once registered you will be automatically signed in and will be presented with the social feed screen.
+![unnamed](https://github.com/nkosko21/BeMeal/assets/136133267/1b468231-4207-48f2-91d3-a1c17d54e0c1)
+![unnamed-2](https://github.com/nkosko21/BeMeal/assets/136133267/ccb158f0-03f5-4d4b-afde-d8cde0d4ea27)
 
 
 If you are ever logged out of BeMeal for any reason and already have an account registered, you can sign in using the sign in button and entering your credentials, and use the sign-in button again
 
+![unnamed-3](https://github.com/nkosko21/BeMeal/assets/136133267/c0d4ef47-94f9-4d8d-a509-d96e20ebc397)
 
 ### View Profile:
 After signing in or registering, you will be prompted with the social feed screen. Here you have many options, all of which will be outlined in the following slides. To view your profile, use the profile button in the top right bar, where your profile picture, name, and email will be shown.
