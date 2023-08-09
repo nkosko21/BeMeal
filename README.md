@@ -32,6 +32,7 @@ After signing in or registering, you will be prompted with the social feed scree
 
 ### Add friends:
 Click the add friend button in the top right bar to add a friend. Here, you will be prompted to enter your friend's name, and click search. If the account exists, the user will appear on the screen, where you can click “add friend” to add them and take you back to the social feed screen.
+
 ![unnamed-5](https://github.com/nkosko21/BeMeal/assets/136133267/5b064c5c-a541-4987-8271-0f748e919f50)
 ![unnamed-6](https://github.com/nkosko21/BeMeal/assets/136133267/c7952359-6913-4163-bbe4-0894f6889286)
 ![unnamed-7](https://github.com/nkosko21/BeMeal/assets/136133267/28b2672c-e811-4d9c-8a5a-601f4321dad5)
